@@ -1,11 +1,10 @@
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
 import Home from './src/pages/Home';
-import Startup from './src/pages/Startup';
 import Setting from './src/pages/Settings';
 import {Text, TouchableOpacity, View} from "react-native";
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 const Tab = createBottomTabNavigator();
 
@@ -13,20 +12,11 @@ const Tab = createBottomTabNavigator();
 
 
 function TabBarCustomized({state,descriptors,navigation}) {
-    console.log(state)
-    console.log(descriptors)
-    console.log(navigation)
     return (
-        <View style={{ flexDirection: 'row' }}>
+        <View style={{ flexDirection: 'row',justifyContent:"space-around"}}>
             {state.routes.map((route, index) => {
                 const { options } = descriptors[route.key];
-                const label =
-                    options.tabBarLabel !== undefined
-                        ? options.tabBarLabel
-                        : options.title !== undefined
-                            ? options.title
-                            : route.name;
-
+                const label = route.name
                 const isFocused = state.index === index;
 
                 const onPress = () => {
@@ -37,28 +27,20 @@ function TabBarCustomized({state,descriptors,navigation}) {
                     });
 
                     if (!isFocused && !event.defaultPrevented) {
-                        // The `merge: true` option makes sure that the params inside the tab screen are preserved
                         navigation.navigate({ name: route.name, merge: true });
                     }
-                };
-
-                const onLongPress = () => {
-                    navigation.emit({
-                        type: 'tabLongPress',
-                        target: route.key,
-                    });
                 };
 
                 return (
                     <TouchableOpacity
                         accessibilityRole="button"
-                        accessibilityState={isFocused ? { selected: true } : {}}
+                        accessibilityState={isFocused? { selected: true } : {}}
                         accessibilityLabel={options.tabBarAccessibilityLabel}
                         testID={options.tabBarTestID}
                         onPress={onPress}
-                        onLongPress={onLongPress}
-                        style={{ flex: 1 }}
+                        style={{ justifyContent:"center"}}
                     >
+                        <FontAwesome name={"rocket"}/>
                         <Text style={{ color: isFocused ? '#673ab7' : '#222' }}>
                             {label}
                         </Text>
@@ -75,7 +57,6 @@ export default function App() {
       <Tab.Navigator initialRouteName="Home" tabBar={(props)=><TabBarCustomized {...props}/>}>
         <Tab.Screen name="Home" component={Home} />
         <Tab.Screen name="Settings" component={Setting} />
-        <Tab.Screen name="Startup" component={Startup} />
       </Tab.Navigator>
     </NavigationContainer>
   );
