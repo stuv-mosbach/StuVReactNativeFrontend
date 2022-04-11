@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
@@ -16,9 +17,12 @@ function TabBarCustomized({state,descriptors,navigation}) {
         <View style={{ flexDirection: 'row',justifyContent:"space-around"}}>
             {state.routes.map((route, index) => {
                 const { options } = descriptors[route.key];
-                const label = route.name
+                const label = route.name;
                 const isFocused = state.index === index;
-
+                let iconName = label.toLowerCase();
+                if (iconName === 'settings') {
+                    iconName = 'cog';
+                }
                 const onPress = () => {
                     const event = navigation.emit({
                         type: 'tabPress',
@@ -40,7 +44,7 @@ function TabBarCustomized({state,descriptors,navigation}) {
                         onPress={onPress}
                         style={{ justifyContent:"center"}}
                     >
-                        <FontAwesome name={"rocket"}/>
+                        <FontAwesome name={iconName}/>
                         <Text style={{ color: isFocused ? '#673ab7' : '#222' }}>
                             {label}
                         </Text>
