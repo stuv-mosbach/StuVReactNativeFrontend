@@ -42,12 +42,9 @@ function TabBarCustomized({state,descriptors,navigation}) {
                         accessibilityLabel={options.tabBarAccessibilityLabel}
                         testID={options.tabBarTestID}
                         onPress={onPress}
-                        style={{ justifyContent:"center"}}
+                        style={{ justifyContent:"center",alignItems: 'center',marginBottom:12,marginTop:12}}
                     >
-                        <FontAwesome name={iconName}/>
-                        <Text style={{ color: isFocused ? '#673ab7' : '#222' }}>
-                            {label}
-                        </Text>
+                        <FontAwesome name={iconName} size={32} color={isFocused ? '#673ab7' : '#222'}/>
                     </TouchableOpacity>
                 );
             })}
