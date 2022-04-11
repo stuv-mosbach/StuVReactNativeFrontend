@@ -1,0 +1,24 @@
+import axios from 'axios';
+import { async } from 'rxjs';
+import { map } from 'rxjs/operators';
+export interface Course {
+  name: string;
+}
+export interface Lecture {
+  id: number;
+  date: Date;
+  startTime: Date;
+  endTime: Date;
+  name: string;
+  type: string;
+  rooms: string[];
+  course: string;
+}
+export const NetworkService = {
+  getLectures: function (course: string, start?: Date, end?: Date) {
+    axios.get('https://api.stuv.app/rapla/lectures/' + course).then(res => {
+      console.log(res.data);
+      console.log("------");
+    });
+  },
+};

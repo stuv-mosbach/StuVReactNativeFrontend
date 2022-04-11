@@ -1,10 +1,10 @@
 /* eslint-disable prettier/prettier */
-import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
 import Home from './src/pages/Home';
 import Setting from './src/pages/Settings';
-import {Text, TouchableOpacity, View} from "react-native";
+import {TouchableOpacity, View} from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 const Tab = createBottomTabNavigator();
@@ -14,7 +14,7 @@ const Tab = createBottomTabNavigator();
 
 function TabBarCustomized({state,descriptors,navigation}) {
     return (
-        <View style={{ flexDirection: 'row',justifyContent:"space-around"}}>
+        <View style={{ flexDirection: 'row',justifyContent:'space-around'}}>
             {state.routes.map((route, index) => {
                 const { options } = descriptors[route.key];
                 const label = route.name;
@@ -38,18 +38,18 @@ function TabBarCustomized({state,descriptors,navigation}) {
                 return (
                     <TouchableOpacity
                         accessibilityRole="button"
-                        accessibilityState={isFocused? { selected: true } : {}}
+                        accessibilityState={isFocused ? { selected: true } : {}}
                         accessibilityLabel={options.tabBarAccessibilityLabel}
                         testID={options.tabBarTestID}
                         onPress={onPress}
-                        style={{ justifyContent:"center",alignItems: 'center',marginBottom:12,marginTop:12}}
+                        style={{ justifyContent:'center',alignItems: 'center',marginBottom:12,marginTop:12}}
                     >
                         <FontAwesome name={iconName} size={32} color={isFocused ? '#673ab7' : '#222'}/>
                     </TouchableOpacity>
                 );
             })}
         </View>
-    )
+    );
 }
 
 export default function App() {
