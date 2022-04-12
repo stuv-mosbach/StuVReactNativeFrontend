@@ -2609,15 +2609,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"async@npm:2.6.2":
-  version: 2.6.2
-  resolution: "async@npm:2.6.2"
-  dependencies:
-    lodash: ^4.17.11
-  checksum: e5e90a3bcc4d9bf964bfc6b77d63b8f5bee8c14e9a51c3317dbcace44d5b6b1fe01cd4fd347449704a107da7fcd25e1382ee8545957b2702782ae720605cf7a4
-  languageName: node
-  linkType: hard
-
 "async@npm:^2.4.0":
   version: 2.6.3
   resolution: "async@npm:2.6.3"
@@ -2876,15 +2867,6 @@ __metadata:
   version: 1.6.51
   resolution: "big-integer@npm:1.6.51"
   checksum: 3d444173d1b2e20747e2c175568bedeebd8315b0637ea95d75fd27830d3b8e8ba36c6af40374f36bdaea7b5de376dcada1b07587cb2a79a928fccdb6e6e3c518
-  languageName: node
-  linkType: hard
-
-"binary-search-tree@npm:0.2.5":
-  version: 0.2.5
-  resolution: "binary-search-tree@npm:0.2.5"
-  dependencies:
-    underscore: ~1.4.4
-  checksum: 04d2fbdce33ecbaafab9cd58ea286ecbadbc4ead0262bc0489a7d1a1eeef03109fd17f16a5de92b7113c08f31ac0083ab86b283a961b661d4f5f0d7e81d88586
   languageName: node
   linkType: hard
 
@@ -4240,13 +4222,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"events@npm:1.1.0":
-  version: 1.1.0
-  resolution: "events@npm:1.1.0"
-  checksum: 77d57a975c3d41cf89047b56c94a2f843c2ccdf47b6ddb12e737b2c6b7d1b7cf391c0aaeecde3b4879de2f4a516a10316a3d509e8f4322d235b0e5cb3e90bd65
-  languageName: node
-  linkType: hard
-
 "exec-sh@npm:^0.3.2":
   version: 0.3.6
   resolution: "exec-sh@npm:0.3.6"
@@ -5131,13 +5106,6 @@ __metadata:
   version: 2.0.4
   resolution: "inherits@npm:2.0.4"
   checksum: 4a48a733847879d6cf6691860a6b1e3f0f4754176e4d71494c41f3475553768b10f84b5ce1d40fbd0e34e6bfbb864ee35858ad4dd2cf31e02fc4a154b724d7f1
-  languageName: node
-  linkType: hard
-
-"inherits@npm:2.0.1":
-  version: 2.0.1
-  resolution: "inherits@npm:2.0.1"
-  checksum: 6536b9377296d4ce8ee89c5c543cb75030934e61af42dba98a428e7d026938c5985ea4d1e3b87743a5b834f40ed1187f89c2d7479e9d59e41d2d1051aefba07b
   languageName: node
   linkType: hard
 
@@ -6486,7 +6454,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lodash@npm:^4.17.10, lodash@npm:^4.17.11, lodash@npm:^4.17.14, lodash@npm:^4.17.15, lodash@npm:^4.7.0":
+"lodash@npm:^4.17.10, lodash@npm:^4.17.14, lodash@npm:^4.17.15, lodash@npm:^4.7.0":
   version: 4.17.21
   resolution: "lodash@npm:4.17.21"
   checksum: eb835a2e51d381e561e508ce932ea50a8e5a68f4ebdd771ea240d3048244a8d13658acbd502cd4829768c56f2e16bdd4340b9ea141297d472517b83868e677f7
@@ -8317,21 +8285,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-native-local-mongodb@npm:^4.0.0":
-  version: 4.0.0
-  resolution: "react-native-local-mongodb@npm:4.0.0"
-  dependencies:
-    async: 2.6.2
-    binary-search-tree: 0.2.5
-    events: 1.1.0
-    underscore: ^1.13.2
-    util: 0.10.3
-  peerDependencies:
-    react-native: "*"
-  checksum: 551b5ddd0e0a84aa073aa7234588f0d309ed35b90d0bd53548a5006f46142a4caaa785110757d5631e14cf817d0d918f9c175619034f33af2c4e5096bdc27d32
-  languageName: node
-  linkType: hard
-
 "react-native-safe-area-context@npm:^3.4.0":
   version: 3.4.1
   resolution: "react-native-safe-area-context@npm:3.4.1"
@@ -9520,7 +9473,6 @@ __metadata:
     metro-transform-worker: ^0.69.0
     react: 17.0.2
     react-native: 0.67.2
-    react-native-local-mongodb: ^4.0.0
     react-native-safe-area-context: ^3.4.0
     react-native-screens: ^3.11.1
     react-native-vector-icons: ^9.1.0
@@ -9903,20 +9855,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"underscore@npm:^1.13.2":
-  version: 1.13.2
-  resolution: "underscore@npm:1.13.2"
-  checksum: 6ab156c845ccc757fd01d8b9eb28be18ba89ac68993370dd7397a66a95b124f2ba26947fd53e687c084d334429914fc3dd1620d5123b6e0a7cf112cdcf4e859f
-  languageName: node
-  linkType: hard
-
-"underscore@npm:~1.4.4":
-  version: 1.4.4
-  resolution: "underscore@npm:1.4.4"
-  checksum: d9d731fe7ef51fbf8cf3d1b72659a9d0da51d655a67ed866ee33d563d7ce474df37086fa9f37a2fddf85750aee5b9bf5297e80bf41024eeb447fd5e11add83ba
-  languageName: node
-  linkType: hard
-
 "unicode-canonical-property-names-ecmascript@npm:^2.0.0":
   version: 2.0.0
   resolution: "unicode-canonical-property-names-ecmascript@npm:2.0.0"
@@ -10040,15 +9978,6 @@ __metadata:
   version: 1.0.2
   resolution: "util-deprecate@npm:1.0.2"
   checksum: 474acf1146cb2701fe3b074892217553dfcf9a031280919ba1b8d651a068c9b15d863b7303cb15bd00a862b498e6cf4ad7b4a08fb134edd5a6f7641681cb54a2
-  languageName: node
-  linkType: hard
-
-"util@npm:0.10.3":
-  version: 0.10.3
-  resolution: "util@npm:0.10.3"
-  dependencies:
-    inherits: 2.0.1
-  checksum: bd800f5d237a82caddb61723a6cbe45297d25dd258651a31335a4d5d981fd033cb4771f82db3d5d59b582b187cb69cfe727dc6f4d8d7826f686ee6c07ce611e0
   languageName: node
   linkType: hard
 

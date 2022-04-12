@@ -16,7 +16,7 @@ export interface Lecture {
 export const NetworkService = {
   getLectures: function (course: string, start?: Date, end?: Date) {
     axios.get('https://api.stuv.app/rapla/lectures/' + course).then(res => {
-      insertData(res.data);
+      insertData('lectures', res.data);
     });
   },
 };
