@@ -1,7 +1,8 @@
 import React from 'react';
 import { Text, View } from 'react-native';
+import { style } from '../util/Style';
 
-interface CalenderEntryProps {
+interface CalendarEntryProps {
   name: string;
   room: string;
   date: string;
@@ -20,16 +21,16 @@ function formatStartEndTime(startTime: string, endTime: string): string {
   return `${newStartTime}-${newEndTime}`;
 }
 
-export default function CalenderEntry({
+export default function CalendarEntry({
   name,
   type,
   room,
   startTime,
   endTime,
   date,
-}: CalenderEntryProps) {
+}: CalendarEntryProps) {
   return (
-    <View>
+    <View style={style.calendarEntry}>
       <Text>{name}</Text>
       <Text>{new Date(date).toLocaleDateString()}</Text>
       <Text>{formatStartEndTime(startTime, endTime)}</Text>
