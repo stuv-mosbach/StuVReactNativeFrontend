@@ -12,7 +12,10 @@ https://pusher.com/tutorials/persisting-data-react-native/ --> which Storage con
 ```bash
 git clone https://github.com/stuv-mosbach/StuVReactNativeFrontend.git
 cd StuVReactNativeFrontend
-yarn install
+yarn installo
 yarn start&
 yarn run android
 ```
+=======
+# Setup
+https://reactnative.dev/docs/environment-setup nutzen
