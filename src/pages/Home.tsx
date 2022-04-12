@@ -1,18 +1,14 @@
 import React from 'react';
-import { Button, Text, View } from 'react-native';
-import Example from '../components/Example';
-
+import { Text, View } from 'react-native';
+import {
+  fetchLecturesTest,
+  NetworkService,
+} from '../Service/networking-service';
 export default function Home({ navigation }: any) {
+  NetworkService.getLectures("MOS-TINF21A");
   return (
-    <View>
-      <Text>Home</Text>
-      <Button
-        title="Goto Startup"
-        onPress={() => {
-          navigation.navigate('Startup');
-        }}
-      />
-      <Example />
+    <View style={{ display: 'flex', justifyContent: 'center' }}>
+      <Text>Heutige Vorlesung</Text>
     </View>
   );
 }
