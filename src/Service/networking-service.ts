@@ -1,6 +1,5 @@
 import axios from 'axios';
-import { async } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { insertData } from './datastore-service';
 export interface Course {
   name: string;
 }
@@ -17,8 +16,7 @@ export interface Lecture {
 export const NetworkService = {
   getLectures: function (course: string, start?: Date, end?: Date) {
     axios.get('https://api.stuv.app/rapla/lectures/' + course).then(res => {
-      console.log(res.data);
-      console.log("------");
+      insertData(res.data);
     });
   },
 };
