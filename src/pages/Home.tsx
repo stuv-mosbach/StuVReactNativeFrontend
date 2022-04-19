@@ -3,6 +3,7 @@ import {RefreshControl, ScrollView, StatusBar, StyleSheet, Text, View} from 'rea
 import CalenderEntry from '../components/CalenderEntry';
 import {style} from '../util/Style';
 import {
+    Lecture,
     NetworkService,
 } from '../Service/networking-service';
 const wait = (timeout) => {
@@ -16,7 +17,12 @@ export default function Home({navigation}: any) {
     const [refreshing, setRefreshing] = React.useState(false);
     const onRefresh = React.useCallback(() => {
         setRefreshing(true);
-        wait(2000).then(() => setRefreshing(false));
+        NetworkService.getLectures('MOS-TINF21A').then((lectures:Lecture[]|null)=>{
+            if (lectures) {
+                setLectures(lectures);
+            }
+        })
+        setRefreshing(false);
     },[]);
     NetworkService.getLectures('MOS-TINF21A');
     return (
