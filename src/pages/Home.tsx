@@ -13,13 +13,15 @@ export default function Home({navigation}: any) {
     // useEffect(() => {
     //   NetworkService.getLectures('MOS-TINF21A');
     // }, []);
-    const [lectures,setLectures] = useState([]);
+    const [lectures,setLectures] = React.useState([]);
     const [refreshing, setRefreshing] = React.useState(false);
     const onRefresh = React.useCallback(() => {
         setRefreshing(true);
-        NetworkService.getLectures('MOS-TINF21A').then((lectures:Lecture[]|null)=>{
-            if (lectures) {
-                setLectures(lectures);
+        NetworkService.getLectures('MOS-TINF21A').then((lecture:Lecture[]|null)=>{
+            if (lecture) {
+                setLectures(lecture);
+                console.log(lecture);
+                console.log(lectures)
             }
         })
         setRefreshing(false);
