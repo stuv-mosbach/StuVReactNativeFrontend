@@ -1,6 +1,7 @@
 import React from 'react';
 import { Text, View } from 'react-native';
 import { style } from '../util/Style';
+import {Lecture} from "../Service/networking-service";
 
 interface CalendarEntryProps {
   name: string;
@@ -24,17 +25,16 @@ function formatStartEndTime(startTime: string, endTime: string): string {
 export default function CalendarEntry({
   name,
   type,
-  room,
+  rooms,
   startTime,
   endTime,
   date,
-}: CalendarEntryProps) {
+}: Lecture) {
   return (
     <View style={style.calendarEntry}>
       <Text>{name}</Text>
       <Text>{new Date(date).toLocaleDateString()}</Text>
-      <Text>{formatStartEndTime(startTime, endTime)}</Text>
-      <Text>{type === 'ONLINE' ? 'Online Veranstaltung' : room}</Text>
+      <Text>{startTime.getDate()}</Text>
     </View>
   );
 }

@@ -13,15 +13,15 @@ export default function Home({navigation}: any) {
     // useEffect(() => {
     //   NetworkService.getLectures('MOS-TINF21A');
     // }, []);
-    const [lectures,setLectures] = React.useState([]);
-    const [refreshing, setRefreshing] = React.useState(false);
+    const [lectures,setLectures] = useState([] as Lecture[]);
+    const [refreshing, setRefreshing] = useState(false);
     const onRefresh = React.useCallback(() => {
         setRefreshing(true);
         NetworkService.getLectures('MOS-TINF21A').then((lecture:Lecture[]|null)=>{
             if (lecture) {
                 setLectures(lecture);
-                console.log(lecture);
                 console.log(lectures)
+
             }
         })
         setRefreshing(false);
@@ -36,30 +36,15 @@ export default function Home({navigation}: any) {
                     }
         >
             <Text style={style.header}>Heutige Vorlesungen</Text>
-            <CalenderEntry
-                name="Elektrotechnik"
-                date="2022-04-04T22:00:00.000Z"
-                type="PRESENCE"
-                room="B 0.320 Vorlesungsraum"
-                startTime="2022-04-05T07:00:00.000Z"
-                endTime="2022-04-05T10:15:00.000Z"
-            />
-            <CalenderEntry
-                name="Elektrotechnik"
-                date="2022-04-04T22:00:00.000Z"
-                type="PRESENCE"
-                room="B 0.320 Vorlesungsraum"
-                startTime="2022-04-05T07:00:00.000Z"
-                endTime="2022-04-05T10:15:00.000Z"
-            />
-            <CalenderEntry
-                name="Elektrotechnik"
-                date="2022-04-04T22:00:00.000Z"
-                type="PRESENCE"
-                room="B 0.320 Vorlesungsraum"
-                startTime="2022-04-05T07:00:00.000Z"
-                endTime="2022-04-05T10:15:00.000Z"
-            />
+            {lectures.map(lecture =><CalenderEntry name={lecture.name}
+                                                   rooms={lecture.rooms}
+                                                   date={lecture.date}
+                                                   type={lecture.type}
+                                                   startTime={lecture.startTime}
+                                                   endTime={lecture.endTime}
+                                                   course={lecture.course}
+                                                   id={lecture.id}/>)}
+
         </ScrollView>
     );
 }
