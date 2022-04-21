@@ -7,6 +7,7 @@ import Setting from './src/pages/Settings';
 import { TouchableOpacity, View } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { style, theme } from './src/util/Style';
+import Lectures from "./src/pages/Lectures";
 
 const Tab = createBottomTabNavigator();
 
@@ -23,6 +24,9 @@ function TabBarCustomized({ state, descriptors, navigation }) {
           let iconName = label.toLowerCase();
           if (iconName === 'settings') {
             iconName = 'cog';
+          }
+          if (iconName ==='lectures') {
+              iconName = 'list';
           }
           const onPress = () => {
             const event = navigation.emit({
@@ -65,6 +69,7 @@ export default function App() {
         initialRouteName="Home"
         tabBar={props => <TabBarCustomized {...props} />}>
         <Tab.Screen name="Home" component={Home} />
+        <Tab.Screen name="Lectures" component={Lectures} />
         <Tab.Screen name="Settings" component={Setting} />
       </Tab.Navigator>
     </NavigationContainer>
