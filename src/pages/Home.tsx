@@ -6,7 +6,6 @@ import {
     Lecture,
     NetworkService,
 } from '../Service/networking-service';
-import {filter} from "rxjs";
 
 export default function Home({navigation}: any) {
     const filterList = function (toFilterList: Lecture[]) {
