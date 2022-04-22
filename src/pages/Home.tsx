@@ -6,6 +6,7 @@ import {
     Lecture,
     NetworkService,
 } from '../Service/networking-service';
+import {filter} from "rxjs";
 
 export default function Home({navigation}: any) {
     const filterList = function (toFilterList: Lecture[]) {
@@ -17,12 +18,22 @@ export default function Home({navigation}: any) {
             return false;
         })
         if (today.length==0) {
-            let tomorrow = new Date();
-            tomorrow.setHours(0,0,0,0);
-            tomorrow.setDate(filterTime.getDate()+2);
-            return toFilterList.filter((item)=>{
-                return item.date.getTime()>filterTime.getTime()&&item.date.getTime()<=tomorrow.getTime();
+            let tomorrowDate = new Date();
+            tomorrowDate.setHours(0,0,0,0);
+            tomorrowDate.setDate(filterTime.getDate()+2);
+            let tomorrow:Lecture[] = toFilterList.filter((item)=>{
+                return item.startTime.getTime()>filterTime.getTime()&&item.endTime.getTime()<tomorrowDate.getTime();
             });
+            if (tomorrow.length==0 &&filterTime.getDay()==5) {
+                tomorrowDate.setDate(tomorrowDate.getDate()+2);
+                tomorrow= toFilterList.filter((item)=> {
+                    return item.startTime.getTime()>filterTime.getTime()&&item.endTime.getTime()<tomorrowDate.getTime();
+                })
+                console.log(tomorrow);
+                return tomorrow;
+            } else {
+                return tomorrow;
+            }
         } else {
             return today;
         }
@@ -35,7 +46,7 @@ export default function Home({navigation}: any) {
         NetworkService.getLectures('MOS-TINF21A').then((lecture: Lecture[] | null) => {
             if (lecture) {
                 console.log(filterList(lecture));
-                console.log(filterList(lecture).length);
+                setLectures(filterList(lecture))
                 setRefreshing(false);
             }
         })
@@ -53,6 +64,9 @@ export default function Home({navigation}: any) {
                     }
         >
             <Text style={style.header}>Heutige Vorlesungen</Text>
+            {
+                lectures.length==0?<Text>Keine Vorlesungen in nächster Zeit</Text>:<></>
+            }
             {lectures.map(lecture => {
                 return (<CalenderEntry name={lecture.name}
                                        rooms={lecture.rooms}
