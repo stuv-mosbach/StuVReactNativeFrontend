@@ -1,6 +1,5 @@
 import axios from 'axios';
-import {getData, insertData} from './datastore-service';
-import {mergeMap} from "rxjs";
+import {insertData} from './datastore-service';
 export interface Course {
   name: string;
 }
