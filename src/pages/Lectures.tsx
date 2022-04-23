@@ -29,7 +29,7 @@ export default function Lectures() {
             }
 
         })
-    })
+    },[])
     const refresh = useCallback(() => {
         setRefresh(true);
         NetworkService.getLectures('MOS-TINF21A').then((lecture: Lecture[] | null) => {

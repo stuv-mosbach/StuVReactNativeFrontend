@@ -6,29 +6,29 @@ import {
     Lecture,
     NetworkService,
 } from '../Service/networking-service';
+import {getData} from "../Service/datastore-service";
 
 export default function Home({navigation}: any) {
     const filterList = function (toFilterList: Lecture[]) {
         let filterTime = new Date()
         const today = toFilterList.filter((item) => {
-            if (item.endTime.getTime()<filterTime.getTime()) {
+            if (item.endTime.getTime() < filterTime.getTime()) {
                 return item.endTime.getHours() >= filterTime.getHours();
             }
             return false;
         })
-        if (today.length==0) {
+        if (today.length == 0) {
             let tomorrowDate = new Date();
-            tomorrowDate.setHours(0,0,0,0);
-            tomorrowDate.setDate(filterTime.getDate()+2);
-            let tomorrow:Lecture[] = toFilterList.filter((item)=>{
-                return item.startTime.getTime()>filterTime.getTime()&&item.endTime.getTime()<tomorrowDate.getTime();
+            tomorrowDate.setHours(0, 0, 0, 0);
+            tomorrowDate.setDate(filterTime.getDate() + 2);
+            let tomorrow: Lecture[] = toFilterList.filter((item) => {
+                return item.startTime.getTime() > filterTime.getTime() && item.endTime.getTime() < tomorrowDate.getTime();
             });
-            if (tomorrow.length==0 &&filterTime.getDay()==5) {
-                tomorrowDate.setDate(tomorrowDate.getDate()+2);
-                tomorrow= toFilterList.filter((item)=> {
-                    return item.startTime.getTime()>filterTime.getTime()&&item.endTime.getTime()<tomorrowDate.getTime();
+            if (tomorrow.length == 0 && (filterTime.getDay() >= 5)) {
+                tomorrowDate.setDate(tomorrowDate.getDate() + 2);
+                tomorrow = toFilterList.filter((item) => {
+                    return item.startTime.getTime() > filterTime.getTime() && item.endTime.getTime() < tomorrowDate.getTime() && item.date.getDay() == 1;
                 })
-                console.log(tomorrow);
                 return tomorrow;
             } else {
                 return tomorrow;
@@ -44,7 +44,6 @@ export default function Home({navigation}: any) {
         setRefreshing(true);
         NetworkService.getLectures('MOS-TINF21A').then((lecture: Lecture[] | null) => {
             if (lecture) {
-                console.log(filterList(lecture));
                 setLectures(filterList(lecture))
                 setRefreshing(false);
             }
@@ -52,7 +51,26 @@ export default function Home({navigation}: any) {
     }, []);
 
     useEffect(() => {
-    })
+        getData('lectures').then((lectureList) => {
+            if (lectureList) {
+                const lect: Lecture[] = lectureList.map((lecture: Lecture) => {
+                    const lec: Lecture = {
+                        id: lecture["id"],
+                        date: new Date(lecture["date"]),
+                        startTime: new Date(lecture["startTime"]),
+                        endTime: new Date(lecture["endTime"]),
+                        name: lecture["name"],
+                        type: lecture["type"],
+                        rooms: lecture["rooms"],
+                        course: lecture["course"]
+                    }
+                    return lec;
+                });
+                setLectures(filterList(lect));
+            }
+
+        });
+    }, []);
 
     return (
         <ScrollView style={scrollViewStyle.scrollView}
@@ -64,7 +82,7 @@ export default function Home({navigation}: any) {
         >
             <Text style={style.header}>Heutige Vorlesungen</Text>
             {
-                lectures.length==0?<Text>Keine Vorlesungen in nächster Zeit</Text>:<></>
+                lectures.length == 0 ? <Text>Keine Vorlesungen in nächster Zeit</Text> : <></>
             }
             {lectures.map(lecture => {
                 return (<CalenderEntry name={lecture.name}
@@ -74,7 +92,9 @@ export default function Home({navigation}: any) {
                                        startTime={lecture.startTime}
                                        endTime={lecture.endTime}
                                        course={lecture.course}
-                                       id={lecture.id}/>);
+                                       id={lecture.id}
+                                       key={lecture.id}
+                />);
             })}
 
         </ScrollView>
