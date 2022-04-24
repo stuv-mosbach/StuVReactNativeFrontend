@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React, {useEffect, useState, useCallback} from 'react';
 import {RefreshControl, ScrollView, StatusBar, StyleSheet, Text, View} from 'react-native';
 import CalenderEntry from '../components/CalenderEntry';
@@ -29,17 +30,21 @@ export default function Home({navigation}: any) {
                 tomorrow = toFilterList.filter((item) => {
                     return item.startTime.getTime() > filterTime.getTime() && item.endTime.getTime() < tomorrowDate.getTime() && item.date.getDay() == 1;
                 })
+                setHeader("nächste Vorlesungen");
                 return tomorrow;
             } else {
+                setHeader("Morgige Vorlesungen");
                 return tomorrow;
             }
         } else {
+            setHeader("Heutige Vorlesung");
             return today;
         }
 
     };
     const [lectures, setLectures] = useState([] as Lecture[]); /// State for lectures
     const [refreshing, setRefreshing] = useState(false);
+    const [header,setHeader] = useState("Heutige Vorlesungen");
     const onRefresh = useCallback(() => {
         setRefreshing(true);
         NetworkService.getLectures('MOS-TINF21A').then((lecture: Lecture[] | null) => {
@@ -80,7 +85,7 @@ export default function Home({navigation}: any) {
                         />
                     }
         >
-            <Text style={style.header}>Heutige Vorlesungen</Text>
+            <Text style={style.header}>{header}</Text>
             {
                 lectures.length == 0 ? <Text>Keine Vorlesungen in nächster Zeit</Text> : <></>
             }
