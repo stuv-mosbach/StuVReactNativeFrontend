@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
@@ -12,6 +11,7 @@ import Lectures from "./src/pages/Lectures";
 const Tab = createBottomTabNavigator();
 
 //@ts-ignore
+//this function customizes the icons for the tab navigation
 function TabBarCustomized({ state, descriptors, navigation }) {
   return (
     <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>

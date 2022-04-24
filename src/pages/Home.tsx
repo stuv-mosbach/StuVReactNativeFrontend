@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import React, {useEffect, useState, useCallback} from 'react';
 import {RefreshControl, ScrollView, StatusBar, StyleSheet, Text, View} from 'react-native';
 import CalenderEntry from '../components/CalenderEntry';
@@ -9,28 +8,52 @@ import {
 } from '../Service/networking-service';
 import {getData} from "../Service/datastore-service";
 
+/** TODO:
+ - change heutige Vorlesung to upcoming when there is not a today
+ - change color of text of klausur Lectures
+ - NEtInfo implementation to notify user that internet is offline
+ - on tapping the same button - scroll to top in react native
+ - filter holiday days?
+ - tapping on icon refreshes lectures
+ - nesting all LEctures on days so that each day has a sepereta coolumn
+ */
+
+
+
 export default function Home({navigation}: any) {
+    /**
+     * this function filters the list so only today, tomorrow is shown
+     * or if it is friday or saturday it shows the Lectures of monday
+    * */
     const filterList = function (toFilterList: Lecture[]) {
         let filterTime = new Date()
+        //filters the list where the end is greater than current time --> you get all current that are left on the day
         const today = toFilterList.filter((item) => {
-            if (item.endTime.getTime() < filterTime.getTime()) {
+            if (item.date.getTime() < filterTime.getTime()) {
                 return item.endTime.getHours() >= filterTime.getHours();
             }
             return false;
         })
+        // if there are non the next day is selected
         if (today.length == 0) {
             let tomorrowDate = new Date();
+            //set to zero to have an mid night stand
             tomorrowDate.setHours(0, 0, 0, 0);
+            //+2 to set from yesterday midnight to tomorrow midnight
             tomorrowDate.setDate(filterTime.getDate() + 2);
+            //filter everything that is greater than cvurrent time so only the next day is shown
             let tomorrow: Lecture[] = toFilterList.filter((item) => {
                 return item.startTime.getTime() > filterTime.getTime() && item.endTime.getTime() < tomorrowDate.getTime();
             });
+            //if it is friday then the next day is also zero so it is looked whether there is something between the time
             if (tomorrow.length == 0 && (filterTime.getDay() >= 5)) {
                 tomorrowDate.setDate(tomorrowDate.getDate() + 2);
+
                 tomorrow = toFilterList.filter((item) => {
                     return item.startTime.getTime() > filterTime.getTime() && item.endTime.getTime() < tomorrowDate.getTime() && item.date.getDay() == 1;
                 })
-                setHeader("nächste Vorlesungen");
+                //sets header accordingly so there is the right text at the top
+                setHeader("Nächste Vorlesungen");
                 return tomorrow;
             } else {
                 setHeader("Morgige Vorlesungen");
@@ -42,10 +65,12 @@ export default function Home({navigation}: any) {
         }
 
     };
-    const [lectures, setLectures] = useState([] as Lecture[]); /// State for lectures
-    const [refreshing, setRefreshing] = useState(false);
-    const [header,setHeader] = useState("Heutige Vorlesungen");
+    const [lectures, setLectures] = useState([] as Lecture[]); /// State for lectures that are shown
+    const [refreshing, setRefreshing] = useState(false); //for refreshing when reloading the site
+    const [header,setHeader] = useState("Heutige Vorlesungen"); //the header
+
     const onRefresh = useCallback(() => {
+        // on refresh it shows the refresh button, then if it gets the right lecture it filters the list and then turns of the refresh
         setRefreshing(true);
         NetworkService.getLectures('MOS-TINF21A').then((lecture: Lecture[] | null) => {
             if (lecture) {
@@ -55,6 +80,7 @@ export default function Home({navigation}: any) {
         })
     }, []);
 
+    //on startup it loads automatically the Data from async storatge so that it can be viewed in offline mode
     useEffect(() => {
         getData('lectures').then((lectureList) => {
             if (lectureList) {
@@ -86,6 +112,7 @@ export default function Home({navigation}: any) {
                     }
         >
             <Text style={style.header}>{header}</Text>
+
             {
                 lectures.length == 0 ? <Text>Keine Vorlesungen in nächster Zeit</Text> : <></>
             }
@@ -105,6 +132,7 @@ export default function Home({navigation}: any) {
         </ScrollView>
     );
 }
+//style sheet for scroll view - needs exctra view
 export const scrollViewStyle = StyleSheet.create({
     container: {
         flex: 1,
