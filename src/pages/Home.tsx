@@ -9,7 +9,6 @@ import {
 import {getData} from "../Service/datastore-service";
 
 /** TODO:
- - change heutige Vorlesung to upcoming when there is not a today
  - change color of text of klausur Lectures
  - NEtInfo implementation to notify user that internet is offline
  - on tapping the same button - scroll to top in react native
