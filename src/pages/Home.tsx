@@ -23,7 +23,7 @@ export default function Home({navigation}: any) {
     /**
      * this function filters the list so only today, tomorrow is shown
      * or if it is friday or saturday it shows the Lectures of monday
-    * */
+    */
     const filterList = function (toFilterList: Lecture[]) {
         let filterTime = new Date()
         //filters the list where the end is greater than current time --> you get all current that are left on the day
