@@ -13,25 +13,28 @@ export interface LectureGrouped {
 export default function Lectures() {
 
     const groupList = function (lecture: Lecture[]): LectureGrouped[] {
-        let groupedLectures: LectureGrouped[] = []
-        lecture.forEach((lect) => {
-            if (groupedLectures.length == 0) {
+        let groupedLectures: LectureGrouped[] = [] //starts with the grouped list
+        lecture.forEach((lect) => { //for each group adds to lecture grouoped
+            if (groupedLectures.length == 0) { //if it is the first the first item is pusehd to avoid undefined errors
                 groupedLectures.push({
                     date: lect.date,
                     lectures: [lect]
                 } as LectureGrouped)
-            } else {
+            } else { //every other time it looks whether last one pushed has the same date if yes it addds the current lecture
                 if (lect.date.getTime() == groupedLectures[groupedLectures.length - 1].date.getTime()) {
                     groupedLectures[groupedLectures.length - 1].lectures.push(lect)
                 } else {
+                    //else it starts a new group
                     groupedLectures.push({date: lect.date, lectures: [lect]} as LectureGrouped)
                 }
             }
 
         })
-        console.log(groupedLectures)
         return groupedLectures
     }
+    /**
+     * this function formats the date so there gets back a clear date and a clear day so everyone knows which day it is
+     * */
     const formatDate = function (date: Date): string {
         let dateString: string = "";
         if (date.getDate() < 10) {
@@ -104,9 +107,11 @@ export default function Lectures() {
         return dateString
     }
 
-
+    //states for refresh button and lectures
     const [lectures, setLectures] = useState([] as LectureGrouped[]);
     const [refreshing, setRefresh] = useState(false);
+
+
     useEffect(() => {
         getData('lectures').then((lectureList) => {
             if (lectureList) {
@@ -129,6 +134,7 @@ export default function Lectures() {
 
         })
     }, [])
+    //on refresh it gets the course... next thing is to make this selectable
     const refresh = useCallback(() => {
         setRefresh(true);
         NetworkService.getLectures('MOS-TINF21A').then((lecture: Lecture[] | null) => {

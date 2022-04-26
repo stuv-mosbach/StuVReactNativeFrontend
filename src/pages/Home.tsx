@@ -13,8 +13,6 @@ import {getData} from "../Service/datastore-service";
  - NEtInfo implementation to notify user that internet is offline
  - on tapping the same button - scroll to top in react native
  - filter holiday days?
- - tapping on icon refreshes lectures
- - nesting all LEctures on days so that each day has a sepereta coolumn
  */
 
 
