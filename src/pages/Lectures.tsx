@@ -11,19 +11,100 @@ export interface LectureGrouped {
 }
 
 export default function Lectures() {
+
     const groupList = function (lecture: Lecture[]): LectureGrouped[] {
         let groupedLectures: LectureGrouped[] = []
-        groupedLectures.push({date: lecture[0].date, lectures: [lecture[0]]} as LectureGrouped)
         lecture.forEach((lect) => {
-            if (lect.date.getTime() == groupedLectures[groupedLectures.length - 1].date.getTime()) {
-                groupedLectures[groupedLectures.length - 1].lectures.push(lect)
+            if (groupedLectures.length == 0) {
+                groupedLectures.push({
+                    date: lect.date,
+                    lectures: [lect]
+                } as LectureGrouped)
             } else {
-                groupedLectures.push({date: lecture[0].date, lectures: [lect]} as LectureGrouped)
+                if (lect.date.getTime() == groupedLectures[groupedLectures.length - 1].date.getTime()) {
+                    groupedLectures[groupedLectures.length - 1].lectures.push(lect)
+                } else {
+                    groupedLectures.push({date: lect.date, lectures: [lect]} as LectureGrouped)
+                }
             }
+
         })
         console.log(groupedLectures)
         return groupedLectures
     }
+    const formatDate = function (date: Date): string {
+        let dateString: string = "";
+        if (date.getDate() < 10) {
+            dateString = "0" + date.getDate() + ". "
+        } else {
+            dateString = date.getDate() + ". "
+        }
+        switch (date.getMonth()) {
+            case 0:
+                dateString += "Jan";
+                break;
+            case 1:
+                dateString += "Feb";
+                break;
+            case 2:
+                dateString += "Mär";
+                break;
+            case 3:
+                dateString += "Apr";
+                break;
+            case 4:
+                dateString += "Mai";
+                break;
+            case 5:
+                dateString += "Jun";
+                break;
+            case 6:
+                dateString += "Jul";
+                break;
+            case 7:
+                dateString += "Aug";
+                break;
+            case 8:
+                dateString += "Sep";
+                break;
+            case 9:
+                dateString += "Okt";
+                break;
+            case 10:
+                dateString += "Nov";
+                break;
+            case 11:
+                dateString += "Dez";
+                break;
+        }
+        dateString += " " + date.getFullYear() + " - ";
+        switch (date.getDay()) {
+            case 1:
+                dateString += "Montag";
+                break;
+            case 2:
+                dateString += "Dienstag";
+                break;
+            case 3:
+                dateString += "Mittwoch";
+                break;
+            case 4:
+                dateString += "Donnerstag";
+                break;
+            case 5:
+                dateString += "Freitag";
+                break;
+            case 6:
+                dateString += "Samstag";
+                break;
+            case 7:
+                dateString += "Sonntag";
+                break;
+        }
+        return dateString
+    }
+
+
     const [lectures, setLectures] = useState([] as LectureGrouped[]);
     const [refreshing, setRefresh] = useState(false);
     useEffect(() => {
@@ -59,21 +140,25 @@ export default function Lectures() {
     }, []);
     return (
         <ScrollView style={scrollViewStyle.scrollView}
-                    refreshControl={<RefreshControl refreshing={refreshing}
-                                                    onRefresh={refresh}
-                    />}
+                    refreshControl={
+                        <RefreshControl refreshing={refreshing}
+                                        onRefresh={refresh}
+                        />}
         >
             {lectures.map((lectureGrouped) => {
                 return (
                     <View>
-                        <Text>{lectureGrouped.date.getDay() + "." + lectureGrouped.date.getMonth() + "." + lectureGrouped.date.getFullYear()}</Text>
+                        <Text style={{
+                            paddingTop: 7,
+                            paddingBottom: 0
+                        }}>{formatDate(lectureGrouped.date)}</Text>
                         <View style={{
                             borderBottomColor: 'grey',
                             borderBottomWidth: 1,
                             paddingTop: 5,
                             width: "100%",
                         }}/>
-                        {lectureGrouped.lectures.map((lect)=>{
+                        {lectureGrouped.lectures.map((lect) => {
                             return (<CalenderEntry name={lect.name}
                                                    rooms={lect.rooms}
                                                    date={lect.date}
@@ -82,7 +167,6 @@ export default function Lectures() {
                                                    endTime={lect.endTime}
                                                    course={lect.course}
                                                    id={lect.id}
-                                                   key={lect.id}
                             />);
                         })}
                     </View>)
