@@ -4,6 +4,7 @@ import React, {useCallback, useEffect, useState} from "react";
 import {Lecture, NetworkService} from "../Service/networking-service";
 import {scrollViewStyle} from "./Home";
 import {getData} from "../Service/datastore-service";
+import {useScrollToTop} from "@react-navigation/native";
 
 export interface LectureGrouped {
     date: Date,
@@ -11,6 +12,8 @@ export interface LectureGrouped {
 }
 
 export default function Lectures() {
+    const ref = React.useRef(null); //used to scroll to top on tapping the same icon
+    useScrollToTop(ref);
 
     const groupList = function (lecture: Lecture[]): LectureGrouped[] {
         let groupedLectures: LectureGrouped[] = [] //starts with the grouped list
@@ -150,6 +153,7 @@ export default function Lectures() {
                         <RefreshControl refreshing={refreshing}
                                         onRefresh={refresh}
                         />}
+                    ref={ref}
         >
             {lectures.map((lectureGrouped) => {
                 return (
