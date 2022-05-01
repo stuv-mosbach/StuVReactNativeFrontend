@@ -11,6 +11,8 @@ import {getData} from "../Service/datastore-service";
 /** TODO:
  - change color of text of klausur Lectures
  - NEtInfo implementation to notify user that internet is offline
+ https://bestofreactjs.com/repo/magicismight-react-native-root-toast-react-react-native-awesome-components
+ https://github.com/react-native-netinfo/react-native-netinfo
  - filter holiday days?
  */
 

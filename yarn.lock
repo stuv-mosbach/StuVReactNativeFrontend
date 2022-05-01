@@ -8171,7 +8171,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prop-types@npm:^15.7.2":
+"prop-types@npm:^15.5.10, prop-types@npm:^15.7.2":
   version: 15.8.1
   resolution: "prop-types@npm:15.8.1"
   dependencies:
@@ -8282,6 +8282,25 @@ __metadata:
   dependencies:
     react-native-codegen: "*"
   checksum: 558b0937f4b661bd69ac6dc7d8a69e4ad5d6897aac85c390fc3acd8a7bfe8cfec8b2ba49dda15be522f13a5f30148217cc69676fff444fd813ebbaa1fc6446a8
+  languageName: node
+  linkType: hard
+
+"react-native-root-siblings@npm:^4.0.0":
+  version: 4.1.1
+  resolution: "react-native-root-siblings@npm:4.1.1"
+  checksum: a4df9213be4864ec9ca5a99dd5e9218034a3cda66faa76b8910247a5e728d720df297f4dde811d83219adf370762a62948a8d954f8198bb3e4512e4dbc7dad00
+  languageName: node
+  linkType: hard
+
+"react-native-root-toast@npm:^3.3.0":
+  version: 3.3.0
+  resolution: "react-native-root-toast@npm:3.3.0"
+  dependencies:
+    prop-types: ^15.5.10
+    react-native-root-siblings: ^4.0.0
+  peerDependencies:
+    react-native: ">=0.47.0"
+  checksum: 556c841cb52e730613d1f784fbc5be2f62e5c071d7ec877884ce18293bf7a02fba9fb10fd64a3f3986d4e58dd90e84e2bf021324f5a7bbe47ee047a91f8549d5
   languageName: node
   linkType: hard
 
@@ -9473,6 +9492,7 @@ __metadata:
     metro-transform-worker: ^0.69.0
     react: 17.0.2
     react-native: 0.67.2
+    react-native-root-toast: ^3.3.0
     react-native-safe-area-context: ^3.4.0
     react-native-screens: ^3.11.1
     react-native-vector-icons: ^9.1.0
