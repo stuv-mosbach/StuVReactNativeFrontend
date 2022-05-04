@@ -5,7 +5,8 @@ import {Lecture, NetworkService} from "../Service/networking-service";
 import {scrollViewStyle} from "./Home";
 import {getData} from "../Service/datastore-service";
 import {useScrollToTop} from "@react-navigation/native";
-
+import Toast from 'react-native-root-toast';
+import NetInfo from "@react-native-community/netinfo";
 export interface LectureGrouped {
     date: Date,
     lectures: Lecture[]
@@ -14,7 +15,6 @@ export interface LectureGrouped {
 export default function Lectures() {
     const ref = React.useRef(null); //used to scroll to top on tapping the same icon
     useScrollToTop(ref);
-
     const groupList = function (lecture: Lecture[]): LectureGrouped[] {
         let groupedLectures: LectureGrouped[] = [] //starts with the grouped list
         lecture.forEach((lect) => { //for each group adds to lecture grouoped
@@ -137,16 +137,27 @@ export default function Lectures() {
 
         })
     }, [])
-    //on refresh it gets the course... next thing is to make this selectable
+    //on refresh it gets the course
+    // if it is not connected to the internet it gets an update that it is not connected and it returns it to the user
     const refresh = useCallback(() => {
         setRefresh(true);
-        NetworkService.getLectures('MOS-TINF21A').then((lecture: Lecture[] | null) => {
-            if (lecture) {
-                setLectures(groupList(lecture));
-                setRefresh(false);
+        NetInfo.fetch().then(netstate=>{
+            if (netstate.isConnected) {
+                NetworkService.getLectures('MOS-TINF21A').then((lecture: Lecture[] | null) => {
+                    if (lecture) {
+                        setLectures(groupList(lecture));
+                        setRefresh(false);
+                    }
+                });
+            } else {
+                let toast = Toast.show("Sie sind nicht zum Internet verbunden")
+                setRefresh(false)
             }
         })
+
     }, []);
+
+
     return (
         <ScrollView style={scrollViewStyle.scrollView}
                     refreshControl={

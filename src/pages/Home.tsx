@@ -7,12 +7,11 @@ import {
     NetworkService,
 } from '../Service/networking-service';
 import {getData} from "../Service/datastore-service";
+import NetInfo from "@react-native-community/netinfo";
+import Toast from "react-native-root-toast";
 
 /** TODO:
  - change color of text of klausur Lectures
- - NEtInfo implementation to notify user that internet is offline
- https://bestofreactjs.com/repo/magicismight-react-native-root-toast-react-react-native-awesome-components
- https://github.com/react-native-netinfo/react-native-netinfo
  - filter holiday days?
  */
 
@@ -70,12 +69,20 @@ export default function Home({navigation}: any) {
     const onRefresh = useCallback(() => {
         // on refresh it shows the refresh button, then if it gets the right lecture it filters the list and then turns of the refresh
         setRefreshing(true);
-        NetworkService.getLectures('MOS-TINF21A').then((lecture: Lecture[] | null) => {
-            if (lecture) {
-                setLectures(filterList(lecture))
-                setRefreshing(false);
+        NetInfo.fetch().then(netstate=> {
+            if (netstate.isConnected) {
+                NetworkService.getLectures('MOS-TINF21A').then((lecture: Lecture[] | null) => {
+                    if (lecture) {
+                        setLectures(filterList(lecture))
+                        setRefreshing(false);
+                    }
+                })
+            } else {
+                let toast = Toast.show("Sie sind nicht zum Internet verbunden")
+                setRefreshing(false)
             }
         })
+
     }, []);
 
     //on startup it loads automatically the Data from async storatge so that it can be viewed in offline mode

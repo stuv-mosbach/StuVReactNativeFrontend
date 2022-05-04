@@ -7,7 +7,7 @@ import { TouchableOpacity, View } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { style, theme } from './src/util/Style';
 import Lectures from "./src/pages/Lectures";
-
+import { RootSiblingParent } from 'react-native-root-siblings';
 const Tab = createBottomTabNavigator();
 
 //@ts-ignore
@@ -64,6 +64,7 @@ function TabBarCustomized({ state, descriptors, navigation }) {
 
 export default function App() {
   return (
+      <RootSiblingParent>
     <NavigationContainer>
       <Tab.Navigator
         initialRouteName="Home"
@@ -73,5 +74,6 @@ export default function App() {
         <Tab.Screen name="Settings" component={Setting} />
       </Tab.Navigator>
     </NavigationContainer>
+      </RootSiblingParent>
   );
 }

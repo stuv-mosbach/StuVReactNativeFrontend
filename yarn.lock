@@ -1668,6 +1668,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@react-native-community/netinfo@npm:^8.3.0":
+  version: 8.3.0
+  resolution: "@react-native-community/netinfo@npm:8.3.0"
+  peerDependencies:
+    react-native: ">=0.59"
+  checksum: 4b57c44d45c896e500d1ba11b88e1cab5d78723f53eb24b4c21a643cb38a5e1d35fe84c19dfad7a5e967117de1b78125d854d0363b1134c7ce71c9c2bc1a17d0
+  languageName: node
+  linkType: hard
+
 "@react-native/assets@npm:1.0.0":
   version: 1.0.0
   resolution: "@react-native/assets@npm:1.0.0"
@@ -8285,7 +8294,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-native-root-siblings@npm:^4.0.0":
+"react-native-root-siblings@npm:^4.0.0, react-native-root-siblings@npm:^4.1.1":
   version: 4.1.1
   resolution: "react-native-root-siblings@npm:4.1.1"
   checksum: a4df9213be4864ec9ca5a99dd5e9218034a3cda66faa76b8910247a5e728d720df297f4dde811d83219adf370762a62948a8d954f8198bb3e4512e4dbc7dad00
@@ -9476,6 +9485,7 @@ __metadata:
     "@babel/runtime": ^7.12.5
     "@react-native-async-storage/async-storage": ^1.17.3
     "@react-native-community/eslint-config": ^2.0.0
+    "@react-native-community/netinfo": ^8.3.0
     "@react-navigation/bottom-tabs": ^6.3.1
     "@react-navigation/native": ^6.0.8
     "@react-navigation/native-stack": ^6.5.0
@@ -9492,6 +9502,7 @@ __metadata:
     metro-transform-worker: ^0.69.0
     react: 17.0.2
     react-native: 0.67.2
+    react-native-root-siblings: ^4.1.1
     react-native-root-toast: ^3.3.0
     react-native-safe-area-context: ^3.4.0
     react-native-screens: ^3.11.1
