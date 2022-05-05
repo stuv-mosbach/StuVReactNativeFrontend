@@ -91,14 +91,10 @@ export default function Home({navigation}: any) {
             if (lectureList) {
                 const lect: Lecture[] = lectureList.map((lecture: Lecture) => {
                     const lec: Lecture = {
-                        id: lecture["id"],
-                        date: new Date(lecture["date"]),
-                        startTime: new Date(lecture["startTime"]),
-                        endTime: new Date(lecture["endTime"]),
-                        name: lecture["name"],
-                        type: lecture["type"],
-                        rooms: lecture["rooms"],
-                        course: lecture["course"]
+                        ...lecture,
+                        date: new Date(lecture.date),
+                        startTime: new Date(lecture.startTime),
+                        endTime: new Date(lecture.endTime)
                     }
                     return lec;
                 });
@@ -122,15 +118,7 @@ export default function Home({navigation}: any) {
                 lectures.length == 0 ? <Text>Keine Vorlesungen in nächster Zeit</Text> : <></>
             }
             {lectures.map(lecture => {
-                return (<CalenderEntry name={lecture.name}
-                                       rooms={lecture.rooms}
-                                       date={lecture.date}
-                                       type={lecture.type}
-                                       startTime={lecture.startTime}
-                                       endTime={lecture.endTime}
-                                       course={lecture.course}
-                                       id={lecture.id}
-                                       key={lecture.id}
+                return (<CalenderEntry {...lecture}
                 />);
             })}
 
