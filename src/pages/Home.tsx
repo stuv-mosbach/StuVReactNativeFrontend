@@ -105,7 +105,7 @@ export default function Home({navigation}: any) {
     }, []);
 
     return (
-        <ScrollView style={scrollViewStyle.scrollView}
+        <ScrollView style={style.scrollViewStyle}
                     refreshControl={
                         <RefreshControl refreshing={refreshing}
                                         onRefresh={onRefresh}
@@ -125,13 +125,3 @@ export default function Home({navigation}: any) {
         </ScrollView>
     );
 }
-//style sheet for scroll view - needs exctra view
-export const scrollViewStyle = StyleSheet.create({
-    container: {
-        flex: 1,
-        paddingTop: StatusBar.currentHeight,
-    },
-    scrollView: {
-        marginHorizontal: 20,
-    },
-});

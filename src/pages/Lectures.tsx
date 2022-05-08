@@ -2,16 +2,17 @@ import {RefreshControl, ScrollView, Text, View} from "react-native";
 import CalenderEntry from "../components/CalenderEntry";
 import React, {useCallback, useEffect, useState} from "react";
 import {Lecture, NetworkService} from "../Service/networking-service";
-import {scrollViewStyle} from "./Home";
 import {getData} from "../Service/datastore-service";
 import {useScrollToTop} from "@react-navigation/native";
 import Toast from 'react-native-root-toast';
 import NetInfo from "@react-native-community/netinfo";
+import {style} from "../util/Style";
 
 export interface LectureGrouped {
     date: Date,
     lectures: Lecture[]
 }
+
 export default function Lectures() {
     const ref = React.useRef(null); //used to scroll to top on tapping the same icon
     useScrollToTop(ref);
@@ -49,7 +50,7 @@ export default function Lectures() {
         const day = ["Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag", "Sonntag"]
         dateString += month[date.getMonth()]
         dateString += " " + date.getFullYear() + " - ";
-        dateString += day[date.getDay() - 1]
+        dateString += day[date.getDay()]
         return dateString
     }
 
@@ -98,7 +99,7 @@ export default function Lectures() {
 
 
     return (
-        <ScrollView style={scrollViewStyle.scrollView}
+        <ScrollView style={style.scrollViewStyle}
                     refreshControl={
                         <RefreshControl refreshing={refreshing}
                                         onRefresh={refresh}
@@ -108,16 +109,8 @@ export default function Lectures() {
             {lectures.map((lectureGrouped) => {
                 return (
                     <View>
-                        <Text style={{
-                            paddingTop: 7,
-                            paddingBottom: 0
-                        }}>{formatDate(lectureGrouped.date)}</Text>
-                        <View style={{
-                            borderBottomColor: 'grey',
-                            borderBottomWidth: 1,
-                            paddingTop: 5,
-                            width: "100%",
-                        }}/>
+                        <Text style={style.lectureGroupedText}>{formatDate(lectureGrouped.date)}</Text>
+                        <View style={style.lectureGroupedView}/>
                         {lectureGrouped.lectures.map((lect) => {
                             return (<CalenderEntry {...lect}
                             />);
