@@ -1,9 +1,15 @@
-import Datastore from 'react-native-local-mongodb';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-export const db = new Datastore({ filename: 'offlineData', autoload: true,storage:AsyncStorage });
 
-// eslint-disable-next-line prettier/prettier
-export const insertData = function (document:any) {
-  let t = db.insert(document, function (err, newDocs) {});
-  console.log(t);
+export const insertData = function (key:string,value:any) {
+  AsyncStorage.setItem(key, JSON.stringify(value));
 };
+
+export const getData = function (key:string) {
+  return AsyncStorage.getItem(key).then((res)=>{
+    if (res) {
+      return JSON.parse(res);
+    } else {
+      return null;
+    }
+  });
+}
