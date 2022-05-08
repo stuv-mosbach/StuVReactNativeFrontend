@@ -59,7 +59,7 @@ buck-out/
 
 # CocoaPods
 /ios/Pods/
-
+/StuV Frontend screenshots
 
 # Custom stuff
 package-lock.json
