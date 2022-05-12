@@ -49,10 +49,42 @@ export const style = StyleSheet.create({
         paddingTop: 7,
         paddingBottom: 0
     },
-    lectureGroupedView: {
+    divider: {
         borderBottomColor: 'grey',
         borderBottomWidth: 1,
         paddingTop: 5,
         width: "100%",
+    },
+    settingsView: {
+        padding: 10
+    },
+    settingsHeader: {
+        color: theme.text,
+        marginLeft: 10,
+        fontWeight: "bold"
+    },
+    settingsField: {
+        height: 40,
+        backgroundColor: theme.background,
+        borderRadius: theme.borderRadius,
+        borderColor: theme.borderColor,
+        borderWidth: 1,
+        marginTop: 10,
+        marginBottom: 10,
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "space-between"
+    },
+    settingsFieldEntryLeft: {
+        margin: 10,
+        display: "flex",
+        color: theme.text,
+        fontWeight: "bold"
+    },
+    settingsIcon: {
+        fontSize: 20,
+        color: "black",
+        margin:7,
+        marginRight:15,
     }
 });

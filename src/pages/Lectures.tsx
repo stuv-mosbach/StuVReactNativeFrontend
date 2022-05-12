@@ -110,7 +110,7 @@ export default function Lectures() {
                 return (
                     <View>
                         <Text style={style.lectureGroupedText}>{formatDate(lectureGrouped.date)}</Text>
-                        <View style={style.lectureGroupedView}/>
+                        <View style={style.divider}/>
                         {lectureGrouped.lectures.map((lect) => {
                             return (<CalenderEntry {...lect}
                             />);
