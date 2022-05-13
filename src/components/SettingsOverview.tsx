@@ -1,5 +1,5 @@
 import { style } from '../util/Style';
-import { Text, View } from 'react-native';
+import { Linking, Text, Touchable, TouchableOpacity, View } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import React from 'react';
 
@@ -21,19 +21,30 @@ export default function SettingsOverview({ navigation }: any) {
       <View style={style.divider} />
       <Text style={style.h3}>Version</Text>
       <Text style={{ marginLeft: 20 }}>2.0</Text>
-      <View
+      <TouchableOpacity
         style={style.settingsField}
-        onTouchStart={() => {
+        onPress={() => {
           navigation.navigate('Devs');
         }}>
         <Text style={style.settingsFieldEntryLeft}>Devs</Text>
         <FontAwesome name={'arrow-right'} style={style.settingsIcon} />
-      </View>
+      </TouchableOpacity>
+      <View style={style.divider} />
+      <Text style={style.h3}>Interesse an der StuV?</Text>
+      <TouchableOpacity style={style.settingsField}>
+        <Text style={style.settingsFieldEntryLeft}>StuV anmelden</Text>
+        <FontAwesome name={'arrow-right'} style={style.settingsIcon} />
+      </TouchableOpacity>
 
       <View style={style.divider} />
-      <Text>Bugs melden</Text>
-      <View style={style.divider} />
-      <Text>Stuv Teilnehmenö</Text>
+      <TouchableOpacity
+        style={style.settingsField}
+        onPress={() => {
+          Linking.openURL('mailto:it@stuv-mosbach.de');
+        }}>
+        <Text style={style.settingsFieldEntryLeft}>Bugs melden</Text>
+        <FontAwesome name={'arrow-right'} style={style.settingsIcon} />
+      </TouchableOpacity>
     </View>
   );
 }

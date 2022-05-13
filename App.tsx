@@ -10,6 +10,11 @@ import Lectures from "./src/pages/Lectures";
 import { RootSiblingParent } from 'react-native-root-siblings';
 const Tab = createBottomTabNavigator();
 
+/***
+ * TODO: 
+ * - minimize show of Errors
+*/
+
 //@ts-ignore
 //this function customizes the icons for the tab navigation
 function TabBarCustomized({ state, descriptors, navigation }) {
