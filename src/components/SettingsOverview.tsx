@@ -19,8 +19,8 @@ export default function SettingsOverview({ navigation }: any) {
     <View style={style.settingsView}>
       <Text>Kurs auswählen</Text>
       <View style={style.divider} />
-      <Text style={style.settingsHeader}>Version</Text>
-      <Text>2.0</Text>
+      <Text style={style.h3}>Version</Text>
+      <Text style={{ marginLeft: 20 }}>2.0</Text>
       <View
         style={style.settingsField}
         onTouchStart={() => {
