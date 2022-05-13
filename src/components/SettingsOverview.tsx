@@ -8,7 +8,6 @@ import React from 'react';
  * - add all DEvs to the Dev list
  * - make devlist look pretty
  * - include component from Mattheo
- * - create under bugs melden a automation link to writing an email to it@stuv
  * - add log automation
  * - add automation to StuV to write to marketing or stuv Studiensprecher
  * -
@@ -30,8 +29,12 @@ export default function SettingsOverview({ navigation }: any) {
         <FontAwesome name={'arrow-right'} style={style.settingsIcon} />
       </TouchableOpacity>
       <View style={style.divider} />
-      <Text style={style.h3}>Interesse an der StuV?</Text>
-      <TouchableOpacity style={style.settingsField}>
+      <Text style={style.h3}>Du willst mit bei der StuV mitmischen?</Text>
+      <TouchableOpacity
+        style={style.settingsField}
+        onPress={() => {
+          Linking.openURL('mailto:kontakt@stuv-mosbach.de');
+        }}>
         <Text style={style.settingsFieldEntryLeft}>StuV anmelden</Text>
         <FontAwesome name={'arrow-right'} style={style.settingsIcon} />
       </TouchableOpacity>
