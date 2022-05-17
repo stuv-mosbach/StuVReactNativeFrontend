@@ -1,16 +1,13 @@
 import { style } from '../util/Style';
-import { Linking, Text, Touchable, TouchableOpacity, View } from 'react-native';
+import { Linking, Text, TouchableOpacity, View } from 'react-native';
+// @ts-ignore
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import React from 'react';
 
 /**
  * TODO:
- * - add all DEvs to the Dev list
- * - make devlist look pretty
  * - include component from Mattheo
  * - add log automation
- * - add automation to StuV to write to marketing or stuv Studiensprecher
- * -
  * */
 
 export default function SettingsOverview({ navigation }: any) {
@@ -19,7 +16,7 @@ export default function SettingsOverview({ navigation }: any) {
       <Text>Kurs auswählen</Text>
       <View style={style.divider} />
       <Text style={style.h3}>Version</Text>
-      <Text style={{ marginLeft: 20 }}>2.0</Text>
+      <Text style={{ marginLeft: 10 }}>- 2.0</Text>
       <TouchableOpacity
         style={style.settingsField}
         onPress={() => {
