@@ -131,15 +131,15 @@ export default function Lectures() {
         <RefreshControl refreshing={refreshing} onRefresh={refresh} />
       }
       ref={ref}>
-      {lectures.map(lectureGrouped => {
+      {lectures.map((lectureGrouped,indexRough) => {
         return (
           <View>
             <Text style={style.lectureGroupedText}>
               {formatDate(lectureGrouped.date)}
             </Text>
             <View style={style.divider} />
-            {lectureGrouped.lectures.map(lect => {
-              return <CalenderEntry {...lect} />;
+            {lectureGrouped.lectures.map((lect,index) => {
+              return <CalenderEntry {...lect} key={indexRough.toString()+"|"+index.toString()} />;
             })}
           </View>
         );

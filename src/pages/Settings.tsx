@@ -6,9 +6,6 @@ import DevList from '../components/DevList';
 const Stack = createNativeStackNavigator();
 
 export default function Settings({ navigation }: any) {
-  const subToNavigation = navigation.getParent().addListender('tabPress',(e)=>{
-    console.log("test")
-  });
   return (
     <Stack.Navigator
       initialRouteName="Overview"

@@ -9,10 +9,15 @@ import {
 import React from 'react';
 import { style } from '../util/Style';
 
-export default function DevList() {
+export default function DevList({navigation}:any) {
   const openAvatar = function (url: string) {
     Linking.openURL(url);
   };
+  React.useEffect(()=>{
+    const unsubscribe = navigation.getParent().addListener('tabPress',(e)=>{
+        navigation.navigate('Overview');
+    });
+  },[navigation])
   return (
     <ScrollView style={style.scrollViewStyle}>
       <View style={style.container}>
