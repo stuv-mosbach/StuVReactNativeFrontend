@@ -3,14 +3,6 @@ import {Text, View} from 'react-native';
 import {style} from '../util/Style';
 import {Lecture} from "../Service/networking-service";
 
-interface CalendarEntryProps {
-    name: string;
-    room: string;
-    date: string;
-    type: 'PRESENCE' | 'ONLINE';
-    startTime: string;
-    endTime: string;
-}
 
 function formatStartEndTime(startTime: Date, endTime: Date): string {
     let start: string = startTime.getHours() < 10 ? "0" + startTime.getHours().toString() : startTime.getHours().toString();
