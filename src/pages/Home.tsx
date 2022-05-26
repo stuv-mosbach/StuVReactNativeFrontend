@@ -16,7 +16,7 @@ import Toast from 'react-native-root-toast';
 
 /** TODO:
  - change color of text of klausur Lectures
- - filter holiday days?
+ - https://bestofreactjs.com/repo/wmcmahan-react-native-calendar-events-react-react-native-awesome-components
  */
 
 export default function Home({navigation}: any) {
