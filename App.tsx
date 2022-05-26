@@ -3,13 +3,12 @@ import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
 import Home from './src/pages/Home';
 import Setting from './src/pages/Settings';
-import { TouchableOpacity, View } from 'react-native';
+import { Button, TouchableOpacity, View } from 'react-native';
 // @ts-ignore
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { style, theme } from './src/util/Style';
 import Lectures from "./src/pages/Lectures";
 import { RootSiblingParent } from 'react-native-root-siblings';
-import HeaderLectures from "./src/components/Header";
 const Tab = createBottomTabNavigator();
 
 
@@ -64,6 +63,9 @@ function TabBarCustomized({ state, descriptors, navigation }:any) {
 }
 
 export default function App() {
+  const exportToCalender = function () {
+    
+  }
   return (
       <RootSiblingParent>
     <NavigationContainer>
@@ -71,7 +73,17 @@ export default function App() {
         initialRouteName="Home"
         tabBar={props => <TabBarCustomized {...props} />}>
         <Tab.Screen name="Home" component={Home} />
-        <Tab.Screen name="Lectures" component={Lectures} options={{headerTitle: (props)=><HeaderLectures {...props}/>}} />
+        <Tab.Screen name="Lectures" 
+        component={Lectures}
+        options = {{
+          headerRight: ()=>(<TouchableOpacity
+          style={{marginRight:20}}>
+            <FontAwesome name={"calendar"}
+            size={24}
+            color={"black"} />
+          </TouchableOpacity>)
+        }}
+          />
         <Tab.Screen name="Settings" component={Setting} />
       </Tab.Navigator>
     </NavigationContainer>

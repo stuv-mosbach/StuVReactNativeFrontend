@@ -125,8 +125,8 @@ export default function Home({navigation}: any) {
             ) : (
                 <></>
             )}
-            {lectures.map(lecture => {
-                return <CalenderEntry {...lecture} />;
+            {lectures.map((lecture,index) => {
+                return <CalenderEntry {...lecture} key={index} />;
             })}
         </ScrollView>
     );
