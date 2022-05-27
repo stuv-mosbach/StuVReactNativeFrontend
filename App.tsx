@@ -9,6 +9,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { style, theme } from './src/util/Style';
 import Lectures from "./src/pages/Lectures";
 import { RootSiblingParent } from 'react-native-root-siblings';
+import RNCalendarEvents from 'react-native-calendar-events';
 const Tab = createBottomTabNavigator();
 
 
@@ -64,7 +65,11 @@ function TabBarCustomized({ state, descriptors, navigation }:any) {
 
 export default function App() {
   const exportToCalender = function () {
-    
+    console.log("Test");
+    RNCalendarEvents.findCalendars().then((res)=>{
+      console.log(res);
+
+    });
   }
   return (
       <RootSiblingParent>
@@ -77,6 +82,7 @@ export default function App() {
         component={Lectures}
         options = {{
           headerRight: ()=>(<TouchableOpacity
+          onPress={()=>exportToCalender()}
           style={{marginRight:20}}>
             <FontAwesome name={"calendar"}
             size={24}
