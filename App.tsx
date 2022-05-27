@@ -10,6 +10,8 @@ import { style, theme } from './src/util/Style';
 import Lectures from "./src/pages/Lectures";
 import { RootSiblingParent } from 'react-native-root-siblings';
 import RNCalendarEvents from 'react-native-calendar-events';
+import Toast from 'react-native-root-toast';
+import { endWith } from 'rxjs';
 const Tab = createBottomTabNavigator();
 
 
@@ -68,6 +70,26 @@ export default function App() {
     RNCalendarEvents.checkPermissions().then(async (permission)=>{
       if(permission!="authorized") {
         await RNCalendarEvents.requestPermissions();
+        permission = await RNCalendarEvents.checkPermissions();
+        if (permission!="authorized") {
+          Toast.show('Keine Berechtigung um in den Kalender zu Exportieren!');
+        }
+      }
+      if (permission=='authorized') {
+        RNCalendarEvents.findCalendars().then(calender=>{
+          const calID = calender[0]["id"]
+          let endDate = new Date()
+          endDate.setDate(28);
+          RNCalendarEvents.saveEvent('Test',{
+            calendarId:calID,
+            startDate: (new Date()).toJSON(),
+            endDate: endDate.toJSON()
+          }).then(cald =>{
+            console.log(cald)
+          }).catch((err)=>{
+            console.log(err)
+          });
+        });
       }
     });
   }
