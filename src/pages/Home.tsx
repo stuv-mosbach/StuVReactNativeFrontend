@@ -26,6 +26,7 @@ export default function Home({navigation}: any) {
      */
     const filterList = function (toFilterList: Lecture[]) {
         let filterTime = new Date();
+        toFilterList = toFilterList.filter(item => item.endTime.getTime()>(new Date()).getTime());
         //filters the list where the end is greater than current time --> you get all current that are left on the day
         const today = toFilterList.filter(item => {
             if (item.date.getTime() < filterTime.getTime()) {
