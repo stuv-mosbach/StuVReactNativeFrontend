@@ -75,21 +75,17 @@ export default function App() {
           Toast.show('Keine Berechtigung um in den Kalender zu Exportieren!');
         }
       }
-      if (permission=='authorized') {
-        RNCalendarEvents.findCalendars().then(calender=>{
-          const calID = calender[0]["id"]
-          let endDate = new Date()
-          endDate.setDate(28);
+      if (permission=='authorized') {;
+        let endDate = new Date();
+        endDate.setHours(22);
           RNCalendarEvents.saveEvent('Test',{
-            calendarId:calID,
             startDate: (new Date()).toJSON(),
-            endDate: endDate.toJSON()
+            endDate: endDate.toJSON(),
           }).then(cald =>{
             console.log(cald)
           }).catch((err)=>{
             console.log(err)
           });
-        });
       }
     });
   }
