@@ -65,10 +65,10 @@ function TabBarCustomized({ state, descriptors, navigation }:any) {
 
 export default function App() {
   const exportToCalender = function () {
-    console.log("Test");
-    RNCalendarEvents.findCalendars().then((res)=>{
-      console.log(res);
-
+    RNCalendarEvents.checkPermissions().then(async (permission)=>{
+      if(permission!="authorized") {
+        await RNCalendarEvents.requestPermissions();
+      }
     });
   }
   return (
