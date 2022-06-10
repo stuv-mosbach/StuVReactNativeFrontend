@@ -75,20 +75,27 @@ export default function App() {
           Toast.show('Keine Berechtigung um in den Kalender zu Exportieren!');
         }
       }
-      if (permission=='authorized') {;
+      if (permission=='authorized') {
         let endDate = new Date();
-        endDate.setHours(22);
+        endDate.setHours(23);
           RNCalendarEvents.saveEvent('Test',{
             startDate: (new Date()).toJSON(),
             endDate: endDate.toJSON(),
+            calendarId:""
+
+          },{
+
           }).then(cald =>{
             console.log(cald)
+            Toast.show("KAlender wurde hinzugefügt")
           }).catch((err)=>{
             console.log(err)
           });
       }
     });
   }
+
+
   return (
       <RootSiblingParent>
     <NavigationContainer>
@@ -96,7 +103,7 @@ export default function App() {
         initialRouteName="Home"
         tabBar={props => <TabBarCustomized {...props} />}>
         <Tab.Screen name="Home" component={Home} />
-        <Tab.Screen name="Lectures" 
+        <Tab.Screen name="Lectures"
         component={Lectures}
         options = {{
           headerRight: ()=>(<TouchableOpacity
