@@ -87,11 +87,18 @@ export default function Home({navigation}: any) {
                             setRefreshing(false);
                         }
                     },
-                );
+                ).catch((err)=>{
+                    Toast.show("Error while updating!");
+                    console.log(err);
+                    setRefreshing(false);        
+                });
             } else {
                 let toast = Toast.show('Sie sind nicht zum Internet verbunden');
                 setRefreshing(false);
             }
+        }).catch((err)=>{
+            Toast.show("Error while updating!");
+            setRefreshing(false);
         });
     }, []);
 
