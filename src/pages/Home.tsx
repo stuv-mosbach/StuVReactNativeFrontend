@@ -89,7 +89,6 @@ export default function Home({navigation}: any) {
                     },
                 ).catch((err)=>{
                     Toast.show("Error while updating!");
-                    console.log(err);
                     setRefreshing(false);        
                 });
             } else {
@@ -97,7 +96,7 @@ export default function Home({navigation}: any) {
                 setRefreshing(false);
             }
         }).catch((err)=>{
-            Toast.show("Error while updating!");
+            Toast.show("Error while refreshing !");
             setRefreshing(false);
         });
     }, []);
