@@ -90,7 +90,7 @@ export default function Lectures() {
         setRefresh(true);
         NetInfo.fetch().then(netstate => {
             if (netstate.isConnected) {
-                NetworkService.getLectures('MOS-TINF21A').then(
+                NetworkService.getLectures('MOS-TINF20B').then(
                     (lecture: Lecture[] | null) => {
                         if (lecture) {
                             setLectures(groupList(lecture));
