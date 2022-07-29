@@ -67,32 +67,7 @@ function TabBarCustomized({ state, descriptors, navigation }:any) {
 
 export default function App() {
   const exportToCalender = function () {
-    RNCalendarEvents.checkPermissions().then(async (permission)=>{
-      if(permission!="authorized") {
-        await RNCalendarEvents.requestPermissions();
-        permission = await RNCalendarEvents.checkPermissions();
-        if (permission!="authorized") {
-          Toast.show('Keine Berechtigung um in den Kalender zu Exportieren!');
-        }
-      }
-      if (permission=='authorized') {
-        let endDate = new Date();
-        endDate.setHours(23);
-          RNCalendarEvents.saveEvent('Test',{
-            startDate: (new Date()).toJSON(),
-            endDate: endDate.toJSON(),
-            calendarId:""
-
-          },{
-
-          }).then(cald =>{
-            console.log(cald)
-            Toast.show("KAlender wurde hinzugefügt")
-          }).catch((err)=>{
-            console.log(err)
-          });
-      }
-    });
+    
   }
 
 
