@@ -3,7 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
 import Home from './src/pages/Home';
 import Setting from './src/pages/Settings';
-import { TouchableOpacity, View } from 'react-native';
+import { TouchableOpacity, View,Linking } from 'react-native';
 // @ts-ignore
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { style, theme } from './src/util/Style';
@@ -64,6 +64,7 @@ function TabBarCustomized({ state, descriptors, navigation }:any) {
 
 export default function App() {
   const exportToCalender = function () {
+    Linking.openURL("ics:https://api.stuv.app/ics/MOS-TINF20B.ics")
     //use linking and download the shit from max siehe Whatsapp -> danach fehlt nur noch erste seite und komponente zur Kurs auswahl und fertig
   }
 
