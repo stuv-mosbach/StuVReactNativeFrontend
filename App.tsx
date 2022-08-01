@@ -81,21 +81,23 @@ export default function App() {
                 let endDate = new Date();
                 endDate.setHours(23);
                 getData('lectures').then(listOfEvents => {
+                    var counter = 0;
                     for (var i =0;i<listOfEvents.length;++i) {
-
                         console.log(listOfEvents[i])
-                    }
-                });
-                RNCalendarEvents.saveEvent('Test', {
-                    startDate: (new Date()).toISOString(),
-                    endDate: endDate.toISOString(),
-                    calendarId: "123"
+                        RNCalendarEvents.saveEvent(listOfEvents[i]["name"],{
+                            startDate: new Date(listOfEvents[i]["startTime"]).toISOString(),
+                            endDate: new Date(listOfEvents[i]["endTime"]).toISOString(),
+                            location: listOfEvents[i]["rooms"].join(", "),
+                            id: listOfEvents[i]["id"] + listOfEvents[i]["course"]+"-StuvApp",
+                            description:listOfEvents[i]["course"]
 
-                }, {}).then(cald => {
-                    console.log(cald)
-                    Toast.show("Kalender wurde hinzugefügt")
-                }).catch((err) => {
-                    console.log(err)
+                        },).then(()=>{
+                            ++counter;
+                        });
+                    }
+                    if (counter===listOfEvents.length) {
+                        Toast.show("Alle Events erfolgreich in den Calender eingepflegt")
+                    }
                 });
             }
         });
