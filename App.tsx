@@ -10,14 +10,17 @@ import {style, theme} from './src/util/Style';
 import Lectures from "./src/pages/Lectures";
 import {RootSiblingParent} from 'react-native-root-siblings';
 import RNCalendarEvents from 'react-native-calendar-events';
-import Toast from 'react-native-root-toast';
-import {endWith} from 'rxjs';
+
 import {getData} from "./src/Service/datastore-service";
+import Toast from "react-native-root-toast";
+import Startup from "./src/pages/Startup";
+import SplashScreen from "react-native-splash-screen";
 
 const Tab = createBottomTabNavigator();
 
 
 function TabBarCustomized({state, descriptors, navigation}: any) {
+
     return (
         <View style={{flexDirection: 'row', justifyContent: 'space-around'}}>
             {
@@ -68,6 +71,8 @@ function TabBarCustomized({state, descriptors, navigation}: any) {
 }
 
 export default function App() {
+    let showStartUp = true;
+
     const exportToCalender = function () {
         RNCalendarEvents.checkPermissions().then(async (permission) => {
             if (permission != "authorized") {
@@ -102,15 +107,24 @@ export default function App() {
             }
         });
     }
-
+    React.useEffect(()=>{
+        getData("coursesSelected").then((selCourses)=>{
+            console.log(selCourses)
+            SplashScreen.hide()
+        })
+    })
 
     return (
-        <RootSiblingParent>
+
+
+            <RootSiblingParent>
             <NavigationContainer>
+                {showStartUp ?<Startup/>:
                 <Tab.Navigator
-                    initialRouteName="Home"
+                    initialRouteName="Landing Page"
                     tabBar={props => <TabBarCustomized {...props} />}>
                     <Tab.Screen name="Home" component={Home}/>
+                    <Tab.Screen name={"Landing Page"} component={Startup}/>
                     <Tab.Screen name="Lectures"
                                 component={Lectures}
                                 options={{
@@ -124,7 +138,7 @@ export default function App() {
                                 }}
                     />
                     <Tab.Screen name="Settings" component={Setting}/>
-                </Tab.Navigator>
+                </Tab.Navigator>}
             </NavigationContainer>
         </RootSiblingParent>
     );

@@ -8346,6 +8346,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-native-splash-screen@npm:^3.3.0":
+  version: 3.3.0
+  resolution: "react-native-splash-screen@npm:3.3.0"
+  peerDependencies:
+    react-native: ">=0.57.0"
+  checksum: 14c565d5d4214f55586dcf6f7abd12d99d3e0667f67de3bda7aa24988971567b283a4187fbc0c6269c83b3c21d59d1950335c61bb0780ec2d065e20b3b9199d0
+  languageName: node
+  linkType: hard
+
 "react-native-vector-icons@npm:^9.1.0":
   version: 9.1.0
   resolution: "react-native-vector-icons@npm:9.1.0"
@@ -9516,6 +9525,7 @@ __metadata:
     react-native-root-toast: ^3.3.0
     react-native-safe-area-context: ^3.4.0
     react-native-screens: ^3.11.1
+    react-native-splash-screen: ^3.3.0
     react-native-vector-icons: ^9.1.0
     react-test-renderer: 17.0.2
     rxjs: ^7.5.5

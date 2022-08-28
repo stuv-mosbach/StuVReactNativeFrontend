@@ -126,4 +126,23 @@ export const style = StyleSheet.create({
         color: theme.textSecondary,
         fontSize: 14,
     },
+    text: {
+        color: theme.text,
+        fontSize:12,
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+    },
+    textSecondary: {
+        color: theme.textSecondary,
+        fontSize:12,
+    },
+    button: {
+        marginTop:20,
+        display: 'flex',
+        justifyContent: 'center',
+        marginLeft: theme.margin,
+        marginRight: theme.margin,
+    }
+
 });
