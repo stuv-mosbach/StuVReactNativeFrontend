@@ -129,7 +129,6 @@ export const style = StyleSheet.create({
     text: {
         color: theme.text,
         fontSize:12,
-        display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
     },
@@ -143,6 +142,29 @@ export const style = StyleSheet.create({
         justifyContent: 'center',
         marginLeft: theme.margin,
         marginRight: theme.margin,
+    },
+    innerScrollView: {
+        height: "50%",
+        backgroundColor:theme.background,
+        borderRadius:theme.borderRadius,
+        marginTop: 20,
+    },
+    innerContentContainer: {
+        display: 'flex',
+        justifyContent: 'center',
+        padding:10
+    },
+    courseSelectCheckboxContainer : {
+        height:40
+    },
+    courseSelectText:{
+        marginTop:7
+    },
+    courseSelectContent: {
+        justifyContent:"space-between",
+        flexDirection:"row"
+
     }
+
 
 });

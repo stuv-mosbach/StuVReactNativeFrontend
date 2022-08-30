@@ -1,9 +1,6 @@
 import axios from 'axios';
 import {insertData} from './datastore-service';
 
-export interface Course {
-    name: string;
-}
 
 export interface Lecture {
     id: number;
@@ -15,7 +12,10 @@ export interface Lecture {
     rooms: string[];
     course: string;
 }
-
+export interface Course {
+    name: string;
+    selected:boolean;
+}
 export const NetworkService = {
     getLectures: function (course: string, start?: Date, end?: Date) {
         return axios.get('https://api.stuv.app/rapla/lectures/' + course).then(res => {
@@ -40,4 +40,19 @@ export const NetworkService = {
             }
         });
     },
+    getAllCourses: function () {
+        return axios.get("https://api.stuv.app/rapla/courses/").then(res=>{
+            if (res) {
+                const courses:Course[] = res.data.map((course:string)=>{
+                  return {
+                      name:course,
+                      selected:false
+                  } as Course
+                })
+                return courses;
+            } else {
+                return null;
+            }
+        })
+    }
 };

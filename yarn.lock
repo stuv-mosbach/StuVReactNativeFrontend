@@ -1479,6 +1479,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@react-native-community/checkbox@npm:^0.5.12":
+  version: 0.5.12
+  resolution: "@react-native-community/checkbox@npm:0.5.12"
+  peerDependencies:
+    react: "*"
+    react-native: ">= 0.62"
+    react-native-windows: ">=0.62"
+  peerDependenciesMeta:
+    react-native-windows:
+      optional: true
+  checksum: 9c07132873697732d32eb6729648a0c920dba8118d660eb22a6fcc4f5c4cc1f3c7aed2a022136a8053dcbc05cc8f546927a5086554ed08f72e806708b617ab33
+  languageName: node
+  linkType: hard
+
 "@react-native-community/cli-debugger-ui@npm:^6.0.0-rc.0":
   version: 6.0.0-rc.0
   resolution: "@react-native-community/cli-debugger-ui@npm:6.0.0-rc.0"
@@ -9502,6 +9516,7 @@ __metadata:
     "@babel/core": ^7.12.9
     "@babel/runtime": ^7.12.5
     "@react-native-async-storage/async-storage": ^1.17.3
+    "@react-native-community/checkbox": ^0.5.12
     "@react-native-community/eslint-config": ^2.0.0
     "@react-native-community/netinfo": ^8.3.0
     "@react-navigation/bottom-tabs": ^6.3.1

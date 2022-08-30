@@ -3,9 +3,9 @@ import {style, theme} from "../util/Style";
 import React from "react";
 
 
-export function Paper() {
+export function Paper({ navigation }: any) {
     return (
-        <View style={style.settingsView}>
+        <View style={style.container}>
             <Text style={style.h1}>StuV Companion</Text>
             <Text>2019 Verfasste Studierenschaft</Text>
             <Text style={style.h3}>Haftungsausschluss</Text>
@@ -27,7 +27,7 @@ export function Paper() {
                 Durch das Fortfahren bestätigen Sie, dass Sie den Haftungsausschluss gelesen haben und diesem zustimmen.
             </Text>
             <View style={style.button}>
-                <Button color={theme.primary} title={"Fortfahren"} onPress={()=>{}} />
+                <Button color={theme.primary} title={"Fortfahren"} onPress={()=>{navigation.navigate('courseSelect')}} />
             </View>
         </View>
     )

@@ -109,7 +109,6 @@ export default function App() {
     }
     React.useEffect(()=>{
         getData("coursesSelected").then((selCourses)=>{
-            console.log(selCourses)
             SplashScreen.hide()
         })
     })
