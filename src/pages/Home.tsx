@@ -92,7 +92,7 @@ export default function Home({navigation}: any) {
                         Toast.show("Error while updating!");
                         setRefreshing(false);
                     });
-                })
+                });
 
             } else {
                 let toast = Toast.show('Sie sind nicht zum Internet verbunden');

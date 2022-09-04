@@ -90,14 +90,16 @@ export default function Lectures() {
         setRefresh(true);
         NetInfo.fetch().then(netstate => {
             if (netstate.isConnected) {
-                NetworkService.getLectures('MOS-TINF20B').then(
-                    (lecture: Lecture[] | null) => {
-                        if (lecture) {
-                            setLectures(groupList(lecture));
-                            setRefresh(false);
-                        }
-                    },
-                );
+                getData("coursesSelected").then(courses => {
+                    NetworkService.getLectures(courses.join(',')).then(
+                        (lecture: Lecture[] | null) => {
+                            if (lecture) {
+                                setLectures(groupList(lecture));
+                                setRefresh(false);
+                            }
+                        },
+                    );
+                });
             } else {
                 let toast = Toast.show('Sie sind nicht zum Internet verbunden');
                 setRefresh(false);
