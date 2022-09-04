@@ -164,6 +164,10 @@ export const style = StyleSheet.create({
         justifyContent:"space-between",
         flexDirection:"row"
 
+    },
+    boldText:{
+        fontWeight: "bold",
+        color:theme.text
     }
 
 

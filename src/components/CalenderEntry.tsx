@@ -54,22 +54,19 @@ export default function CalendarEntry({
                                           startTime,
                                           endTime,
                                           date,
+                                          course
                                       }: Lecture) {
 
 
     return (
         <View style={[style.calendarEntry,
             styleColour(type, name)]}>
-            <Text>{name}</Text>
+            <View style={style.courseSelectContent}>
+                <Text style={style.boldText}>{name}</Text>
+                <Text>{course}</Text>
+            </View>
             <View
-                style={{
-
-                    borderBottomColor: 'grey',
-                    borderBottomWidth: 1,
-                    paddingTop: 5,
-                    width: "95%",
-
-                }}
+                style={style.divider}
             />
             <Text>{formatStartEndTime(startTime, endTime)}</Text>
             <Text>{roomText(rooms)}</Text>
