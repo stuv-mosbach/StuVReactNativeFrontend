@@ -3,10 +3,10 @@ import React, {useState} from "react";
 import {style} from "../util/Style";
 import {Course, NetworkService} from "../Service/networking-service";
 import CheckBox from '@react-native-community/checkbox';
+import {insertData} from "../Service/datastore-service";
 
 export function CourseSelecter() {
     const [courses,setCourse] = useState([] as Course[]);
-    const [test,setTest] = useState(false)
 
     React.useEffect(()=>{
         NetworkService.getAllCourses().then((courses:Course[]|null)=>{
@@ -14,7 +14,21 @@ export function CourseSelecter() {
                setCourse(courses);
            }
         })
-    })
+    },[])
+
+
+    const saveSelectedAndReload = function () {
+        let selectedCourse:string[] = []
+        courses.forEach(course=>{
+            if (course.selected) {
+                selectedCourse.push(course.name)
+            }
+        });
+        insertData("coursesSelected",selectedCourse);
+
+    }
+
+
     return (
         <View style={style.container}>
             <Text style={style.h1}>Kurs selektieren</Text>
@@ -26,7 +40,16 @@ export function CourseSelecter() {
                         <View style={style.courseSelectContent}>
                             <Text style={[style.text,style.courseSelectText]}>{onCourse.name}</Text>
                             <CheckBox value={onCourse.selected} onValueChange={(value => {
-
+                                setCourse(existingItems => {
+                                    return [
+                                        ...existingItems.slice(0,index),
+                                        {
+                                            selected:value,
+                                            name: onCourse.name
+                                        } as Course,
+                                        ...existingItems.slice(index+1),
+                                    ]
+                                })
                             })}/>
                         </View>
                         <View style={style.divider}/>
@@ -35,7 +58,7 @@ export function CourseSelecter() {
                 })}
             </ScrollView>
             <View style={style.button}>
-            <Button title={"Abschicken"}/>
+            <Button title={"Abschicken"} onPress={saveSelectedAndReload}/>
             </View>
         </View>
     )

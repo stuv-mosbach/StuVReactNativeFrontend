@@ -71,7 +71,7 @@ function TabBarCustomized({state, descriptors, navigation}: any) {
 }
 
 export default function App() {
-    let showStartUp = true;
+    const [showStartUp,setShowStartUp]=React.useState(true)
 
     const exportToCalender = function () {
         RNCalendarEvents.checkPermissions().then(async (permission) => {
@@ -109,6 +109,9 @@ export default function App() {
     }
     React.useEffect(()=>{
         getData("coursesSelected").then((selCourses)=>{
+            if (selCourses.length>0) {
+                setShowStartUp(false)
+            }
             SplashScreen.hide()
         })
     })
@@ -120,10 +123,9 @@ export default function App() {
             <NavigationContainer>
                 {showStartUp ?<Startup/>:
                 <Tab.Navigator
-                    initialRouteName="Landing Page"
+                    initialRouteName="Home"
                     tabBar={props => <TabBarCustomized {...props} />}>
                     <Tab.Screen name="Home" component={Home}/>
-                    <Tab.Screen name={"Landing Page"} component={Startup}/>
                     <Tab.Screen name="Lectures"
                                 component={Lectures}
                                 options={{

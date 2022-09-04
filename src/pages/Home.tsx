@@ -80,17 +80,20 @@ export default function Home({navigation}: any) {
         setRefreshing(true);
         NetInfo.fetch().then(netstate => {
             if (netstate.isConnected) {
-                NetworkService.getLectures('MOS-TINF21A').then(
-                    (lecture: Lecture[] | null) => {
-                        if (lecture) {
-                            setLectures(filterList(lecture));
-                            setRefreshing(false);
-                        }
-                    },
-                ).catch((err)=>{
-                    Toast.show("Error while updating!");
-                    setRefreshing(false);        
-                });
+                getData("coursesSelected").then(courses=>{
+                    NetworkService.getLectures(courses.join(",")).then(
+                        (lecture: Lecture[] | null) => {
+                            if (lecture) {
+                                setLectures(filterList(lecture));
+                                setRefreshing(false);
+                            }
+                        },
+                    ).catch((err)=>{
+                        Toast.show("Error while updating!");
+                        setRefreshing(false);
+                    });
+                })
+
             } else {
                 let toast = Toast.show('Sie sind nicht zum Internet verbunden');
                 setRefreshing(false);
