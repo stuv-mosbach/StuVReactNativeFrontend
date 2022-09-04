@@ -2,6 +2,7 @@ import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import SettingsOverview from '../components/SettingsOverview';
 import DevList from '../components/DevList';
+import {CourseSelecter} from "../components/selectCourse";
 
 const Stack = createNativeStackNavigator();
 
@@ -20,6 +21,11 @@ export default function Settings({navigation}: any) {
             <Stack.Screen
                 name={'Devs'}
                 component={DevList}
+                options={{headerShown: false}}
+            />
+            <Stack.Screen
+                component={CourseSelecter}
+                name={'Select'}
                 options={{headerShown: false}}
             />
         </Stack.Navigator>

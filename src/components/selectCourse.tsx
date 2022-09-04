@@ -1,9 +1,9 @@
 import {Button, ScrollView, Text, View} from "react-native";
 import React, {useState} from "react";
-import {style} from "../util/Style";
+import {style, theme} from "../util/Style";
 import {Course, NetworkService} from "../Service/networking-service";
 import CheckBox from '@react-native-community/checkbox';
-import {insertData} from "../Service/datastore-service";
+import {getData, insertData} from "../Service/datastore-service";
 
 export function CourseSelecter() {
     const [courses,setCourse] = useState([] as Course[]);
@@ -11,7 +11,16 @@ export function CourseSelecter() {
     React.useEffect(()=>{
         NetworkService.getAllCourses().then((courses:Course[]|null)=>{
            if (courses) {
-               setCourse(courses);
+               getData("coursesSelected").then(res=>{
+                   if (res) {
+                       courses.forEach((course,index)=>{
+                           if(res.includes(course.name)) {
+                               courses[index].selected = true;
+                           }
+                       })
+                   }
+                   setCourse(courses);
+               })
            }
         })
     },[])
@@ -32,6 +41,9 @@ export function CourseSelecter() {
     return (
         <View style={style.container}>
             <Text style={style.h1}>Kurs selektieren</Text>
+            <View>
+                <Text>Suchen:</Text>
+            </View>
             <ScrollView style={style.innerScrollView}
             contentContainerStyle={style.innerContentContainer}>
                 {courses.map((onCourse,index)=> {
@@ -54,11 +66,10 @@ export function CourseSelecter() {
                         </View>
                         <View style={style.divider}/>
                     </View>)
-
                 })}
             </ScrollView>
             <View style={style.button}>
-            <Button title={"Abschicken"} onPress={saveSelectedAndReload}/>
+            <Button color={theme.primary} title={"Speichern"} onPress={saveSelectedAndReload}/>
             </View>
         </View>
     )

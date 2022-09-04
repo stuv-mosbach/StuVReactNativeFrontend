@@ -13,7 +13,15 @@ import React from 'react';
 export default function SettingsOverview({ navigation }: any) {
   return (
     <View style={style.settingsView}>
-      <Text>Kurs auswählen</Text>
+        <TouchableOpacity
+            style={style.settingsField}
+            onPress={()=>{
+                navigation.navigate('Select')
+            }}
+        >
+            <Text style={style.settingsFieldEntryLeft}>Kurs auswählen</Text>
+            <FontAwesome name={'arrow-right'} style={style.settingsIcon} />
+        </TouchableOpacity>
       <View style={style.divider} />
       <Text style={style.h3}>Version</Text>
       <Text style={{ marginLeft: 10 }}>- 2.0</Text>
