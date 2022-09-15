@@ -4,6 +4,7 @@ import {style, theme} from "../util/Style";
 import {Course, Lecture, NetworkService} from "../Service/networking-service";
 import CheckBox from '@react-native-community/checkbox';
 import {getData, insertData} from "../Service/datastore-service";
+// @ts-ignore
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import Toast from "react-native-root-toast";
 
