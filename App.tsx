@@ -129,13 +129,13 @@ export default function App() {
                     <Tab.Screen name="Lectures"
                                 component={Lectures}
                                 options={{
-                                    headerRight: () => (<TouchableOpacity
+                                    headerRight: () => (<View/>/*<TouchableOpacity
                                         onPress={() => exportToCalender()}
                                         style={{marginRight: 20}}>
                                         <FontAwesome name={"calendar"}
                                                      size={24}
                                                      color={"black"}/>
-                                    </TouchableOpacity>)
+                                    </TouchableOpacity>*/)
                                 }}
                     />
                     <Tab.Screen name="Settings" component={Setting}/>
