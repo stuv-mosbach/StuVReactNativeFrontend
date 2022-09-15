@@ -168,7 +168,25 @@ export const style = StyleSheet.create({
     boldText:{
         fontWeight: "bold",
         color:theme.text
+    },
+    inputSelectCourse: {
+        backgroundColor:theme.background,
+        width: "100%",
+        borderRadius:theme.borderRadius,
+        zIndex:0,
+        paddingLeft: "7%",
+        paddingRight:"13%"
+    },
+    searchButton: {
+        zIndex:1,
+        marginTop:15,
+        left: "-70%",
+    },
+    searchField: {
+        justifyContent:"space-between",
+        flexDirection:"row"
     }
+
 
 
 });

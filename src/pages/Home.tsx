@@ -10,7 +10,7 @@ import {
 import CalenderEntry from '../components/CalenderEntry';
 import {style} from '../util/Style';
 import {Lecture, NetworkService} from '../Service/networking-service';
-import {getData} from '../Service/datastore-service';
+import {getData, insertData} from '../Service/datastore-service';
 import NetInfo from '@react-native-community/netinfo';
 import Toast from 'react-native-root-toast';
 
@@ -84,6 +84,7 @@ export default function Home({navigation}: any) {
                     NetworkService.getLectures(courses.join(",")).then(
                         (lecture: Lecture[] | null) => {
                             if (lecture) {
+                                insertData("lectures",lecture);
                                 setLectures(filterList(lecture));
                                 setRefreshing(false);
                             }

@@ -2,7 +2,7 @@ import {RefreshControl, ScrollView, Text, View} from 'react-native';
 import CalenderEntry from '../components/CalenderEntry';
 import React, {useCallback, useEffect, useState} from 'react';
 import {Lecture, NetworkService} from '../Service/networking-service';
-import {getData} from '../Service/datastore-service';
+import {getData, insertData} from '../Service/datastore-service';
 import {useScrollToTop} from '@react-navigation/native';
 import Toast from 'react-native-root-toast';
 import NetInfo from '@react-native-community/netinfo';
@@ -57,10 +57,10 @@ export default function Lectures() {
             dateString = date.getDate() + '. ';
         }
         const month = ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez',];
-        const day = ['Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag', 'Sonntag',];
+        const day = ["Sonntag",'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'];
         dateString += month[date.getMonth()];
         dateString += ' ' + date.getFullYear() + ' - ';
-        dateString += day[date.getDay() - 1];
+        dateString += day[date.getDay()];
         return dateString;
     };
 
@@ -94,6 +94,7 @@ export default function Lectures() {
                     NetworkService.getLectures(courses.join(',')).then(
                         (lecture: Lecture[] | null) => {
                             if (lecture) {
+                                insertData("lectures",lecture);
                                 setLectures(groupList(lecture));
                                 setRefresh(false);
                             }
