@@ -14,11 +14,6 @@ import {getData, insertData} from '../Service/datastore-service';
 import NetInfo from '@react-native-community/netinfo';
 import Toast from 'react-native-root-toast';
 
-/** TODO:
- - change color of text of klausur Lectures
- - https://bestofreactjs.com/repo/wmcmahan-react-native-calendar-events-react-react-native-awesome-components
- */
-
 export default function Home({navigation}: any) {
     /**
      * this function filters the list so only today, tomorrow is shown
