@@ -68,7 +68,7 @@ export function CourseSelecter() {
     return (
         <View style={style.container}>
             <Text style={style.h1}>Kurs selektieren</Text>
-            <View style={style.searchField}>
+            <View style={style.spaceRow}>
                 <TextInput
                     style={style.inputSelectCourse}
                     editable={true}

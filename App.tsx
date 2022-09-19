@@ -22,7 +22,7 @@ const Tab = createBottomTabNavigator();
 function TabBarCustomized({state, descriptors, navigation}: any) {
 
     return (
-        <View style={{flexDirection: 'row', justifyContent: 'space-around'}}>
+        <View style={style.spaceRow}>
             {
                 //@ts-ignore
                 state.routes.map((route, index) => {
