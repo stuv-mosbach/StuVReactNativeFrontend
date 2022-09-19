@@ -4,24 +4,18 @@ import { Linking, Text, TouchableOpacity, View } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import React from 'react';
 
-/**
- * TODO:
- * - include component from Mattheo
- * - add log automation
- * */
-
 export default function SettingsOverview({ navigation }: any) {
   return (
     <View style={style.settingsView}>
-        <TouchableOpacity
-            style={style.settingsField}
-            onPress={()=>{
-                navigation.navigate('Select')
-            }}
-        >
-            <Text style={style.settingsFieldEntryLeft}>Kurs auswählen</Text>
-            <FontAwesome name={'arrow-right'} style={style.settingsIcon} />
-        </TouchableOpacity>
+      <TouchableOpacity
+        style={style.settingsField}
+        onPress={() => {
+          navigation.navigate('Select')
+        }}
+      >
+        <Text style={style.settingsFieldEntryLeft}>Kurs auswählen</Text>
+        <FontAwesome name={'arrow-right'} style={style.settingsIcon} />
+      </TouchableOpacity>
       <View style={style.divider} />
       <Text style={style.h3}>Version</Text>
       <Text style={{ marginLeft: 10 }}>- 2.0</Text>
