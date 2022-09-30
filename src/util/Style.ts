@@ -182,7 +182,7 @@ export const style = StyleSheet.create({
         marginTop:15,
         left: "-70%",
     },
-    searchField: {
+    spaceRow: {
         justifyContent:"space-between",
         flexDirection:"row"
     }
