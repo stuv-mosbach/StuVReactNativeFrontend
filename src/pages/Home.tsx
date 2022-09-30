@@ -2,10 +2,7 @@ import React, {useEffect, useState, useCallback} from 'react';
 import {
     RefreshControl,
     ScrollView,
-    StatusBar,
-    StyleSheet,
-    Text,
-    View,
+    Text
 } from 'react-native';
 import CalenderEntry from '../components/CalenderEntry';
 import {style} from '../util/Style';
