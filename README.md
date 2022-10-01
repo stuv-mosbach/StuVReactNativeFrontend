@@ -1,8 +1,7 @@
 # StuVReactNativeFrontend
 
 Android and iOS app written using react-native.
-## Good to know:
-https://pusher.com/tutorials/persisting-data-react-native/ --> which Storage container to use
+
 ## Try locally:
 
 **requires correct android studio setup**

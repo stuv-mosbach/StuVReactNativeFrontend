@@ -1479,6 +1479,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@react-native-community/checkbox@npm:^0.5.12":
+  version: 0.5.12
+  resolution: "@react-native-community/checkbox@npm:0.5.12"
+  peerDependencies:
+    react: "*"
+    react-native: ">= 0.62"
+    react-native-windows: ">=0.62"
+  peerDependenciesMeta:
+    react-native-windows:
+      optional: true
+  checksum: 9c07132873697732d32eb6729648a0c920dba8118d660eb22a6fcc4f5c4cc1f3c7aed2a022136a8053dcbc05cc8f546927a5086554ed08f72e806708b617ab33
+  languageName: node
+  linkType: hard
+
 "@react-native-community/cli-debugger-ui@npm:^6.0.0-rc.0":
   version: 6.0.0-rc.0
   resolution: "@react-native-community/cli-debugger-ui@npm:6.0.0-rc.0"
@@ -8274,6 +8288,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-native-calendar-events@npm:^2.2.0":
+  version: 2.2.0
+  resolution: "react-native-calendar-events@npm:2.2.0"
+  peerDependencies:
+    react-native: ">=0.60.0"
+  checksum: cc86ece7c92df94cc2ccca2e640451fafda8517b7737301c1d5c9f586dcf061eb411152af9f186fac0ee53796d43ac82a2841c5977bae6a8efbb366085b35553
+  languageName: node
+  linkType: hard
+
 "react-native-codegen@npm:*, react-native-codegen@npm:^0.0.8":
   version: 0.0.8
   resolution: "react-native-codegen@npm:0.0.8"
@@ -8334,6 +8357,15 @@ __metadata:
     react: "*"
     react-native: "*"
   checksum: bc5de3ac095e89f35f758f010081540b9f7514447f89c0be5421a73f8ad017c711ce0fd20d13df46fa7aabcc85cc84933921f0f04f289b9a361ad5f611180b0a
+  languageName: node
+  linkType: hard
+
+"react-native-splash-screen@npm:^3.3.0":
+  version: 3.3.0
+  resolution: "react-native-splash-screen@npm:3.3.0"
+  peerDependencies:
+    react-native: ">=0.57.0"
+  checksum: 14c565d5d4214f55586dcf6f7abd12d99d3e0667f67de3bda7aa24988971567b283a4187fbc0c6269c83b3c21d59d1950335c61bb0780ec2d065e20b3b9199d0
   languageName: node
   linkType: hard
 
@@ -9484,6 +9516,7 @@ __metadata:
     "@babel/core": ^7.12.9
     "@babel/runtime": ^7.12.5
     "@react-native-async-storage/async-storage": ^1.17.3
+    "@react-native-community/checkbox": ^0.5.12
     "@react-native-community/eslint-config": ^2.0.0
     "@react-native-community/netinfo": ^8.3.0
     "@react-navigation/bottom-tabs": ^6.3.1
@@ -9502,10 +9535,12 @@ __metadata:
     metro-transform-worker: ^0.69.0
     react: 17.0.2
     react-native: 0.67.2
+    react-native-calendar-events: ^2.2.0
     react-native-root-siblings: ^4.1.1
     react-native-root-toast: ^3.3.0
     react-native-safe-area-context: ^3.4.0
     react-native-screens: ^3.11.1
+    react-native-splash-screen: ^3.3.0
     react-native-vector-icons: ^9.1.0
     react-test-renderer: 17.0.2
     rxjs: ^7.5.5

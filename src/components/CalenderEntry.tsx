@@ -3,14 +3,6 @@ import {Text, View} from 'react-native';
 import {style} from '../util/Style';
 import {Lecture} from "../Service/networking-service";
 
-interface CalendarEntryProps {
-    name: string;
-    room: string;
-    date: string;
-    type: 'PRESENCE' | 'ONLINE';
-    startTime: string;
-    endTime: string;
-}
 
 function formatStartEndTime(startTime: Date, endTime: Date): string {
     let start: string = startTime.getHours() < 10 ? "0" + startTime.getHours().toString() : startTime.getHours().toString();
@@ -62,22 +54,19 @@ export default function CalendarEntry({
                                           startTime,
                                           endTime,
                                           date,
+                                          course
                                       }: Lecture) {
 
 
     return (
         <View style={[style.calendarEntry,
             styleColour(type, name)]}>
-            <Text>{name}</Text>
+            <View style={style.courseSelectContent}>
+                <Text style={style.boldText}>{name}</Text>
+                <Text>{course}</Text>
+            </View>
             <View
-                style={{
-
-                    borderBottomColor: 'grey',
-                    borderBottomWidth: 1,
-                    paddingTop: 5,
-                    width: "95%",
-
-                }}
+                style={style.divider}
             />
             <Text>{formatStartEndTime(startTime, endTime)}</Text>
             <Text>{roomText(rooms)}</Text>
