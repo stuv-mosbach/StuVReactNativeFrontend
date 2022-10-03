@@ -27,8 +27,8 @@ export const style = StyleSheet.create({
     navigationbar: {
         paddingBottom: theme.padding,
         paddingTop: theme.padding,
-        justifyContent: 'center',
-        alignItems: 'center',
+        justifyContent: 'space-around',
+        flexDirection: "row",
     },
     calendarEntry: {
         backgroundColor: theme.backgroundSecondary,
@@ -175,7 +175,8 @@ export const style = StyleSheet.create({
         borderRadius:theme.borderRadius,
         zIndex:0,
         paddingLeft: "7%",
-        paddingRight:"13%"
+        paddingRight:"13%",
+        color:theme.text
     },
     searchButton: {
         zIndex:1,
@@ -185,6 +186,9 @@ export const style = StyleSheet.create({
     spaceRow: {
         justifyContent:"space-between",
         flexDirection:"row"
+    },
+    checkbox: {
+        color:theme.text
     }
 
 

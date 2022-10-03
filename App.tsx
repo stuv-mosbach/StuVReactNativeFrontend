@@ -22,7 +22,7 @@ const Tab = createBottomTabNavigator();
 function TabBarCustomized({state, descriptors, navigation}: any) {
 
     return (
-        <View style={style.spaceRow}>
+        <View style={style.navigationbar}>
             {
                 //@ts-ignore
                 state.routes.map((route, index) => {
@@ -109,11 +109,11 @@ export default function App() {
     }
     React.useEffect(()=>{
         getData("coursesSelected").then((selCourses)=>{
-            if (selCourses.length>0) {
+            if (selCourses && selCourses.length>0) {
                 setShowStartUp(false)
             }
             SplashScreen.hide()
-        })
+        });
     })
 
     return (

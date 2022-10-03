@@ -88,7 +88,7 @@ export function CourseSelecter() {
             contentContainerStyle={style.innerContentContainer}>
                 {shownCourses.map((onCourse,index)=> {
                     return (
-                    <View style={style.courseSelectCheckboxContainer}>
+                    <View style={style.courseSelectCheckboxContainer} key={index}>
                         <View style={style.courseSelectContent}>
                             <Text style={[style.text,style.courseSelectText]}>{onCourse.name}</Text>
                             <CheckBox value={onCourse.selected} onValueChange={(value => {
@@ -115,7 +115,7 @@ export function CourseSelecter() {
                                         ]
                                     });
                                 }
-                            })}/>
+                            })} tintColor={"#000"}/>
                         </View>
                         <View style={style.divider}/>
                     </View>)
