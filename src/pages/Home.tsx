@@ -121,7 +121,7 @@ export default function Home({navigation}: any) {
             refreshControl={
                 <RefreshControl refreshing={refreshing} onRefresh={onRefresh}/>
             }>
-            <Text style={style.header}>{header}</Text>
+            <Text style={style.h3}>{header}</Text>
 
             {lectures.length == 0 ? (
                 <Text>Keine Vorlesungen in nächster Zeit</Text>

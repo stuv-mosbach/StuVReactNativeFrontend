@@ -14,10 +14,6 @@ export const theme = {
 };
 
 export const style = StyleSheet.create({
-    header: {
-        fontSize: 18,
-        marginTop: theme.margin / 3,
-    },
     container: {
         display: 'flex',
         justifyContent: 'center',
@@ -48,6 +44,7 @@ export const style = StyleSheet.create({
     lectureGroupedText: {
         paddingTop: 7,
         paddingBottom: 0,
+        color:theme.text
     },
     divider: {
         borderBottomColor: 'grey',
@@ -162,8 +159,12 @@ export const style = StyleSheet.create({
     },
     courseSelectContent: {
         justifyContent:"space-between",
-        flexDirection:"row"
-
+        flexDirection:"row",
+        color:theme.text,
+        borderColor:theme.text
+    },
+    normalText: {
+      color:theme.textSecondary
     },
     boldText:{
         fontWeight: "bold",

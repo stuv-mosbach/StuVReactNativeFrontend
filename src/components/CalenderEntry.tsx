@@ -63,13 +63,13 @@ export default function CalendarEntry({
             styleColour(type, name)]}>
             <View style={style.courseSelectContent}>
                 <Text style={style.boldText}>{name}</Text>
-                <Text>{course}</Text>
+                <Text style={style.normalText}>{course}</Text>
             </View>
             <View
                 style={style.divider}
             />
-            <Text>{formatStartEndTime(startTime, endTime)}</Text>
-            <Text>{roomText(rooms)}</Text>
+            <Text style={style.normalText}>{formatStartEndTime(startTime, endTime)}</Text>
+            <Text style={style.normalText}>{roomText(rooms)}</Text>
         </View>
     );
 }
