@@ -56,7 +56,6 @@ export function CourseSelecter() {
 
     }
     const searchInCourses = function (text:string) {
-        console.log(text)
         let searchedCourses:Course[] = [];
         courses.forEach(elem => {
             if (elem.name.toLowerCase().includes(text.toLowerCase())) {
