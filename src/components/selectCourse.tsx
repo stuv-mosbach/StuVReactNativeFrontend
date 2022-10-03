@@ -115,7 +115,7 @@ export function CourseSelecter() {
                                         ]
                                     });
                                 }
-                            })} />
+                            })} tintColors={{false:"#000"}}/>
                         </View>
                         <View style={style.divider}/>
                     </View>)
