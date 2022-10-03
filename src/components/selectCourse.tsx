@@ -48,6 +48,7 @@ export function CourseSelecter() {
                     }
                 }
             );
+
         } else {
             Toast.show("Bitte mindestens einen Kurs auswählen!")
         }
