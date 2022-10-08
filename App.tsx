@@ -117,8 +117,6 @@ export default function App() {
     })
 
     return (
-
-
             <RootSiblingParent>
             <NavigationContainer>
                 {showStartUp ?<Startup/>:

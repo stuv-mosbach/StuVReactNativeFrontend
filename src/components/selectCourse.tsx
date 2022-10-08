@@ -7,6 +7,7 @@ import {getData, insertData} from "../Service/datastore-service";
 // @ts-ignore
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import Toast from "react-native-root-toast";
+import { window } from "rxjs";
 
 export function CourseSelecter() {
     const [courses,setCourse] = useState([] as Course[]);
@@ -48,6 +49,7 @@ export function CourseSelecter() {
                     }
                 }
             );
+            setShownCourses([]);
 
         } else {
             Toast.show("Bitte mindestens einen Kurs auswählen!")
