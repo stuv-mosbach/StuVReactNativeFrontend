@@ -25,9 +25,10 @@ export const style = StyleSheet.create({
         paddingTop: theme.padding,
         justifyContent: 'space-around',
         flexDirection: "row",
+        backgroundColor: theme.backgroundSecondary
     },
     calendarEntry: {
-        backgroundColor: theme.backgroundSecondary,
+        backgroundColor: theme.background,
         color: theme.text,
         borderRadius: theme.borderRadius,
         borderColor: theme.borderColor,

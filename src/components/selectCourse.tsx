@@ -8,11 +8,12 @@ import {getData, insertData} from "../Service/datastore-service";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import Toast from "react-native-root-toast";
 import { window } from "rxjs";
+import {StartupContext} from "../../App";
 
 export function CourseSelecter() {
     const [courses,setCourse] = useState([] as Course[]);
     const [shownCourses,setShownCourses] = useState([] as Course[])
-
+    const {startup, setStartup} = React.useContext(StartupContext)
     //loads all the courses opn startup of the component
     React.useEffect(()=>{
         NetworkService.getAllCourses().then((courses:Course[]|null)=>{
@@ -49,7 +50,10 @@ export function CourseSelecter() {
                     }
                 }
             );
-            setShownCourses([]);
+            if (startup) {
+                //@ts-ignore
+                setStartup(false);
+            }
 
         } else {
             Toast.show("Bitte mindestens einen Kurs auswählen!")

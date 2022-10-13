@@ -70,75 +70,33 @@ function TabBarCustomized({state, descriptors, navigation}: any) {
     );
 }
 
+export const StartupContext = React.createContext({startup:true,setStartup: ()=>{},})
+
 export default function App() {
-    const [showStartUp,setShowStartUp]=React.useState(true)
-
-    const exportToCalender = function () {
-        RNCalendarEvents.checkPermissions().then(async (permission) => {
-            if (permission != "authorized") {
-                await RNCalendarEvents.requestPermissions();
-                permission = await RNCalendarEvents.checkPermissions();
-                if (permission != "authorized") {
-                    Toast.show('Keine Berechtigung um in den Kalender zu Exportieren!');
-                }
-            }
-            if (permission == 'authorized') {
-                let endDate = new Date();
-                endDate.setHours(23);
-                getData('lectures').then(listOfEvents => {
-                    var counter = 0;
-                    for (var i =0;i<listOfEvents.length;++i) {
-                        console.log(listOfEvents[i])
-                        RNCalendarEvents.saveEvent(listOfEvents[i]["name"],{
-                            startDate: new Date(listOfEvents[i]["startTime"]).toISOString(),
-                            endDate: new Date(listOfEvents[i]["endTime"]).toISOString(),
-                            location: listOfEvents[i]["rooms"].join(", "),
-                            id: listOfEvents[i]["id"] + listOfEvents[i]["course"]+"-StuvApp",
-                            description:listOfEvents[i]["course"]
-
-                        },).then(()=>{
-                            ++counter;
-                        });
-                    }
-                    if (counter===listOfEvents.length) {
-                        Toast.show("Alle Events erfolgreich in den Calender eingepflegt")
-                    }
-                });
-            }
-        });
-    }
-    React.useEffect(()=>{
-        getData("coursesSelected").then((selCourses)=>{
-            if (selCourses && selCourses.length>0) {
-                setShowStartUp(false)
+    const [startup,setStartup] = React.useState(true)
+    React.useEffect(() => {
+        getData("coursesSelected").then((selCourses) => {
+            if (selCourses && selCourses.length > 0) {
+                setStartup(false)
             }
             SplashScreen.hide()
         });
-    })
+    },[]);
 
     return (
-            <RootSiblingParent>
-            <NavigationContainer>
-                {showStartUp ?<Startup/>:
-                <Tab.Navigator
-                    initialRouteName="Home"
-                    tabBar={props => <TabBarCustomized {...props} />}>
-                    <Tab.Screen name="Home" component={Home}/>
-                    <Tab.Screen name="Lectures"
-                                component={Lectures}
-                                options={{
-                                    headerRight: () => (<View/>/*<TouchableOpacity
-                                        onPress={() => exportToCalender()}
-                                        style={{marginRight: 20}}>
-                                        <FontAwesome name={"calendar"}
-                                                     size={24}
-                                                     color={"black"}/>
-                                    </TouchableOpacity>*/)
-                                }}
-                    />
-                    <Tab.Screen name="Settings" component={Setting}/>
-                </Tab.Navigator>}
-            </NavigationContainer>
+        <RootSiblingParent>
+            <StartupContext.Provider value={{startup,setStartup}}>
+                <NavigationContainer>
+                    {startup ? <Startup/> :
+                        <Tab.Navigator
+                            initialRouteName="Home"
+                            tabBar={props => <TabBarCustomized {...props} />}>
+                            <Tab.Screen name="Home" component={Home}/>
+                            <Tab.Screen name="Lectures" component={Lectures}/>
+                            <Tab.Screen name="Settings" component={Setting}/>
+                        </Tab.Navigator>}
+                </NavigationContainer>
+            </StartupContext.Provider>
         </RootSiblingParent>
     );
 }
