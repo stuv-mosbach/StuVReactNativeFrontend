@@ -30,12 +30,18 @@ function TabBarCustomized({state, descriptors, navigation}: any) {
                     const label = route.name;
                     const isFocused = state.index === index;
                     let iconName = label.toLowerCase();
-                    if (iconName === 'settings') {
-                        iconName = 'cog';
+                    switch (iconName) {
+                        case 'einstellungen':
+                            iconName = 'cog';
+                            break;
+                        case 'vorlesungen':
+                            iconName = 'list';
+                            break;
+                        case 'startseite':
+                            iconName = 'home';
+                            break;
                     }
-                    if (iconName === 'lectures') {
-                        iconName = 'list';
-                    }
+
                     const onPress = () => {
                         const event = navigation.emit({
                             type: 'tabPress',
@@ -91,9 +97,9 @@ export default function App() {
                         <Tab.Navigator
                             initialRouteName="Home"
                             tabBar={props => <TabBarCustomized {...props} />}>
-                            <Tab.Screen name="Home" component={Home}/>
-                            <Tab.Screen name="Lectures" component={Lectures}/>
-                            <Tab.Screen name="Settings" component={Setting}/>
+                            <Tab.Screen name="Startseite" component={Home}/>
+                            <Tab.Screen name="Vorlesungen" component={Lectures}/>
+                            <Tab.Screen name="Einstellungen" component={Setting}/>
                         </Tab.Navigator>}
                 </NavigationContainer>
             </StartupContext.Provider>
