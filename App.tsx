@@ -3,16 +3,14 @@ import {NavigationContainer} from '@react-navigation/native';
 import React from 'react';
 import Home from './src/pages/Home';
 import Setting from './src/pages/Settings';
-import {Button, TouchableOpacity, View} from 'react-native';
+import {TouchableOpacity, View} from 'react-native';
 // @ts-ignore
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import {style, theme} from './src/util/Style';
 import Lectures from "./src/pages/Lectures";
 import {RootSiblingParent} from 'react-native-root-siblings';
-import RNCalendarEvents from 'react-native-calendar-events';
 
 import {getData} from "./src/Service/datastore-service";
-import Toast from "react-native-root-toast";
 import Startup from "./src/pages/Startup";
 import SplashScreen from "react-native-splash-screen";
 
