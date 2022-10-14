@@ -124,7 +124,7 @@ export default function Home({navigation}: any) {
             <Text style={style.h3}>{header}</Text>
 
             {lectures.length == 0 ? (
-                <Text>Keine Vorlesungen in nächster Zeit</Text>
+                <Text style={style.text}>Keine Vorlesungen in nächster Zeit</Text>
             ) : (
                 <></>
             )}

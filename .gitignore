@@ -63,3 +63,4 @@ buck-out/
 
 # Custom stuff
 package-lock.json
+debug.keystore
